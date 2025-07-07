@@ -91,7 +91,7 @@ def test_mongodb_connection():
         assert create_response.status_code == 200, "Failed to create status check"
         
         # Get all status checks and verify our entry exists
-        get_response = requests.get(f"{API_BASE_URL}/status")
+        get_response = requests.get(f"{API_BASE_URL}/status", timeout=REQUEST_TIMEOUT)
         assert get_response.status_code == 200, "Failed to get status checks"
         
         # Find our test entry in the response
