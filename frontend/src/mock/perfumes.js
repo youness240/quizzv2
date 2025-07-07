@@ -1,93 +1,183 @@
 export const perfumes = [
   {
     id: 1,
-    name: "Tonka",
-    category: "Gourmand",
-    description: "Une étreinte chaleureuse de vanille et d'amande amère, comme la dernière heure dorée d'automne enveloppée dans du cachemire.",
-    notes: ["Vanille", "Fève Tonka", "Amande Amère", "Santal"],
-    personality: ["chaleureux", "sensuel", "cosy", "élégant"],
-    mood: ["romantique", "confiant", "détendu"]
+    name: "A LA ROSE",
+    category: "Floral",
+    description: "L'essence noble de la rose dans sa splendeur absolue, rehaussée par la profondeur de l'oud et la fraîcheur pétillante du pamplemousse.",
+    notes: ["Rose", "Oud", "Pamplemousse", "Ambre", "Bois", "Sauge"],
+    personality: ["élégant", "sophistiqué", "romantique", "noble"],
+    mood: ["romantique", "confiant", "raffiné"]
   },
   {
     id: 2,
-    name: "Ce Soir",
+    name: "ACCORD",
     category: "Oriental",
-    description: "Le mystère du crépuscule capturé dans un flacon - encens fumé dansant avec des pétales de rose sous un ciel de velours.",
-    notes: ["Rose", "Encens", "Oud", "Ambre"],
-    personality: ["mystérieux", "sophistiqué", "audacieux", "dramatique"],
-    mood: ["séduisant", "puissant", "mystérieux"]
+    description: "Une symphonie parfaite où la vanille crémeuse danse avec l'encens mystique, portée par la lavande et le jasmin.",
+    notes: ["Vanille", "Encens", "Lavande", "Jasmin", "Caramel"],
+    personality: ["harmonieux", "mystérieux", "chaleureux", "équilibré"],
+    mood: ["paisible", "mystérieux", "confortable"]
   },
   {
     id: 3,
-    name: "La Nota",
-    category: "Floral",
-    description: "Une symphonie de fleurs blanches qui murmure les secrets des jardins méditerranéens embrassés par la rosée matinale.",
-    notes: ["Jasmin", "Tubéreuse", "Thé Blanc", "Bergamote"],
-    personality: ["frais", "féminin", "gracieux", "pur"],
-    mood: ["joyeux", "paisible", "optimiste"]
+    name: "AMBER NIGHT",
+    category: "Oriental",
+    description: "Les secrets de la nuit capturés dans l'ambre doré, où les baies roses murmurent avec le bois de gaiac sous un ciel étoilé.",
+    notes: ["Baies Rose", "Bergamote", "Rose", "Ambre Gris", "Cèdre", "Bois de Gaiac"],
+    personality: ["mystérieux", "sensuel", "nocturne", "raffiné"],
+    mood: ["mystérieux", "séduisant", "contemplatif"]
   },
   {
     id: 4,
-    name: "So Mula",
-    category: "Boisé",
-    description: "L'essence des forêts ancestrales et des livres reliés de cuir, où la sagesse rencontre la sophistication sauvage.",
-    notes: ["Cèdre", "Vétiver", "Cuir", "Poivre Noir"],
-    personality: ["fort", "intellectuel", "enraciné", "confiant"],
-    mood: ["concentré", "déterminé", "aventurier"]
+    name: "AQUA",
+    category: "Frais",
+    description: "Comme une brise marine au lever du jour, cette eau cristalline mêle bergamote et fleur d'oranger dans un éclat de pureté.",
+    notes: ["Bergamote", "Citron", "Patchouli", "Ambre", "Fleur d'Oranger", "Vanille"],
+    personality: ["frais", "pur", "énergique", "vivifiant"],
+    mood: ["énergique", "optimiste", "libre"]
   },
   {
     id: 5,
-    name: "Red Chroniq",
-    category: "Épicé",
-    description: "Le temps s'arrête dans ce mélange enivrant d'épices cramoisies et de passion chocolat noir.",
-    notes: ["Cannelle", "Chocolat Noir", "Vin Rouge", "Clou de Girofle"],
-    personality: ["passionné", "intense", "audacieux", "magnétique"],
-    mood: ["passionné", "énergique", "confiant"]
+    name: "ATLAS",
+    category: "Boisé",
+    description: "L'âme des montagnes ancestrales, où le bois de santal rencontre les épices dans un voyage vers les sommets.",
+    notes: ["Bois de Santal", "Épices", "Cèdre", "Ambre"],
+    personality: ["fort", "enraciné", "spirituel", "noble"],
+    mood: ["contemplatif", "confiant", "ancré"]
   },
   {
     id: 6,
-    name: "Mozak Latte",
-    category: "Gourmand",
-    description: "Les rituels matinaux transformés en poésie liquide - rêves d'espresso avec des notes de noisette et de crème.",
-    notes: ["Café", "Noisette", "Crème Vanille", "Caramel"],
-    personality: ["énergique", "créatif", "chaleureux", "accessible"],
-    mood: ["énergique", "créatif", "confortable"]
+    name: "BISAP FLOWER",
+    category: "Floral",
+    description: "L'hibiscus rouge s'épanouit dans ce bouquet enivrant, mêlant rose et cannelle dans une danse florale exotique.",
+    notes: ["Hibiscus", "Rose", "Cassis", "Ambrette", "Cannelle"],
+    personality: ["exotique", "floral", "épicé", "vibrant"],
+    mood: ["joyeux", "exotique", "passionné"]
   },
   {
     id: 7,
-    name: "Oud Orange",
-    category: "Oud",
-    description: "Là où les traditions ancestrales du Moyen-Orient rencontrent le soleil méditerranéen en parfaite harmonie.",
-    notes: ["Oud", "Fleur d'Oranger", "Safran", "Rose"],
-    personality: ["exotique", "luxueux", "sophistiqué", "unique"],
-    mood: ["mystérieux", "confiant", "exotique"]
+    name: "BLACK OPIUM",
+    category: "Oriental",
+    description: "L'opium noir révèle ses secrets dans cette composition addictive où le café rencontre l'ylang-ylang et la vanille.",
+    notes: ["Fleur d'Oranger", "Poire", "Poivre Rose", "Café", "Cèdre", "Vanille", "Bois de Santal", "Patchouli"],
+    personality: ["addictif", "mystérieux", "intense", "moderne"],
+    mood: ["séduisant", "énergique", "mystérieux"]
   },
   {
     id: 8,
-    name: "Powder",
-    category: "Poudré",
-    description: "Doux comme une promesse murmurée, ce nuage délicat d'iris et de musc évoque des souvenirs chéris.",
-    notes: ["Iris", "Musc Blanc", "Violette", "Bois de Cachemire"],
-    personality: ["doux", "élégant", "nostalgique", "raffiné"],
-    mood: ["paisible", "romantique", "nostalgique"]
+    name: "BLACK VANILLA",
+    category: "Gourmand",
+    description: "La vanille noire dans toute sa splendeur gourmande, enrichie de cassis et de noix de coco pour une gourmandise raffinée.",
+    notes: ["Cassis", "Pêche Blanche", "Noix de Coco Malgache", "Musc Blanc", "Noix de Muscade", "Baie Rose", "Jasmin", "Cèdre", "Patchouli", "Santal"],
+    personality: ["gourmand", "luxueux", "sensuel", "raffiné"],
+    mood: ["confortable", "gourmand", "séduisant"]
   },
   {
     id: 9,
-    name: "So Velorum",
-    category: "Floral",
-    description: "Fleurs de minuit sous la lumière des étoiles - un jardin céleste où le jasmin rencontre les rayons de lune.",
-    notes: ["Jasmin Nocturne", "Fleur de Lune", "Musc Argenté", "Santal"],
-    personality: ["rêveur", "éthéré", "mystérieux", "féminin"],
-    mood: ["rêveur", "paisible", "mystérieux"]
+    name: "CALIFORNIALOVE",
+    category: "Frais",
+    description: "L'esprit libre de la Californie dans ce mélange solaire où la fève de tonka danse avec la bergamote et la framboise.",
+    notes: ["Fève de Tonka", "Bois de Santal", "Notes Florales Rouges", "Bergamote", "Framboise"],
+    personality: ["libre", "solaire", "moderne", "décontracté"],
+    mood: ["optimiste", "libre", "ensoleillé"]
   },
   {
     id: 10,
-    name: "Kirke",
+    name: "CHANEL",
+    category: "Floral",
+    description: "L'élégance parisienne incarnée dans ce classique intemporel aux notes de jasmin et de rose, signature de la féminité.",
+    notes: ["Jasmin", "Rose", "Ylang-Ylang", "Citron", "Cuir de Russie", "Ambre"],
+    personality: ["élégant", "classique", "féminin", "intemporel"],
+    mood: ["raffiné", "confiant", "élégant"]
+  },
+  {
+    id: 11,
+    name: "COCO VANILLA",
+    category: "Gourmand",
+    description: "Une escapade tropicale où la noix de coco rencontre la vanille de Madagascar dans une douceur crémeuse irrésistible.",
+    notes: ["Noix de Coco", "Pêche Blanche", "Ylang-Ylang", "Vanille de Madagascar"],
+    personality: ["tropical", "gourmand", "doux", "exotique"],
+    mood: ["détendu", "gourmand", "exotique"]
+  },
+  {
+    id: 12,
+    name: "CRUSH",
+    category: "Fruité",
+    description: "L'éclat des fruits d'été dans cette composition pétillante où les agrumes dansent avec la vanille et le musc.",
+    notes: ["Citron", "Bergamote", "Pamplemousse", "Vanille", "Musc"],
+    personality: ["pétillant", "fruité", "jeune", "vivant"],
+    mood: ["joyeux", "énergique", "pétillant"]
+  },
+  {
+    id: 13,
+    name: "DIONNA",
+    category: "Floral",
+    description: "Un hommage à la féminité divine où l'orange et la rose s'unissent dans un bouquet de vanille bourbon enchanteur.",
+    notes: ["Orange", "Poire Rose", "Rhum", "Cacao", "Vanille Bourbon", "Bois de Santal"],
+    personality: ["divin", "féminin", "luxueux", "enchanteur"],
+    mood: ["romantique", "divin", "luxueux"]
+  },
+  {
+    id: 14,
+    name: "DOLLAR HONEY",
+    category: "Gourmand",
+    description: "L'or liquide du miel cristallisé dans cette composition précieuse où chaque note brille comme un trésor.",
+    notes: ["Miel", "Fleur de Colza", "Héliotrope", "Vanille", "Musc", "Bois de Santal"],
+    personality: ["précieux", "doré", "luxueux", "miellé"],
+    mood: ["luxueux", "gourmand", "précieux"]
+  },
+  {
+    id: 15,
+    name: "DUBAI OUD",
+    category: "Oud",
+    description: "Les fastes de Dubaï capturés dans ce oud royal où la rose et le safran couronnent une composition d'exception.",
+    notes: ["Bois de Oud", "Bois de Gaiac", "Praline", "Bois de Cachemire", "Vanille", "Safran", "Oud"],
+    personality: ["royal", "luxueux", "oriental", "prestigieux"],
+    mood: ["puissant", "luxueux", "mystérieux"]
+  },
+  {
+    id: 16,
+    name: "ESCADA",
+    category: "Floral",
+    description: "L'innocence florale dans sa plus pure expression, où la magnolia blanche danse avec la fraîcheur du concombre.",
+    notes: ["Magnolia", "Bois de Santal", "Concombre", "Vanille", "Poivre Blanc"],
+    personality: ["innocent", "floral", "pur", "délicat"],
+    mood: ["paisible", "innocent", "floral"]
+  },
+  {
+    id: 17,
+    name: "FÈVE",
+    category: "Gourmand",
+    description: "La richesse de la fève de tonka sublimée dans cette gourmandise olfactive aux accents de lavande et vanille.",
+    notes: ["Lavande", "Menthe", "Jasmin", "Fève de Tonka", "Vanille"],
+    personality: ["gourmand", "riche", "aromatique", "réconfortant"],
+    mood: ["confortable", "gourmand", "apaisant"]
+  },
+  {
+    id: 18,
+    name: "HARD ROCK",
     category: "Boisé",
-    description: "Le secret de l'enchanteresse - herbes sauvages et bois fumés qui envoûtent les sens.",
-    notes: ["Herbes Sauvages", "Bois Fumés", "Ambre Gris", "Feuilles Vertes"],
-    personality: ["sauvage", "magnétique", "naturel", "puissant"],
-    mood: ["aventurier", "mystérieux", "puissant"]
+    description: "L'énergie brute du rock cristallisée dans ce parfum puissant où le musc blanc rencontre la force du bois de santal.",
+    notes: ["Coriandre", "Muguet", "Bois de Santal", "Vanille"],
+    personality: ["puissant", "énergique", "rebelle", "intense"],
+    mood: ["énergique", "puissant", "rebelle"]
+  },
+  {
+    id: 19,
+    name: "GOLD OF OUD",
+    category: "Oud",
+    description: "L'or de l'oud dans sa splendeur absolue, où les fruits exotiques rencontrent la noblesse du jasmin et de la rose.",
+    notes: ["Notes Fruitées", "Agrumes", "Tonka", "Jasmin"],
+    personality: ["noble", "précieux", "exotique", "rare"],
+    mood: ["luxueux", "mystérieux", "précieux"]
+  },
+  {
+    id: 20,
+    name: "VALENTINO",
+    category: "Floral",
+    description: "L'élégance italienne dans ce bouquet raffiné où la bergamote et l'ylang-ylang célèbrent la beauté féminine.",
+    notes: ["Bergamote", "Fève Tonka", "Cèdre", "Ambre Gris", "Ylang-Ylang", "Ambrette"],
+    personality: ["élégant", "italien", "raffiné", "féminin"],
+    mood: ["raffiné", "élégant", "romantique"]
   }
 ];
 
