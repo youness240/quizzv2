@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
 import { Progress } from './ui/progress';
