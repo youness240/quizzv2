@@ -175,3 +175,5 @@ test_plan:
 agent_communication:
   - agent: "main"
     message: "Completed full replacement of perfume database with 88 new perfumes from user's list. Enhanced quiz with 8 new engaging questions covering taste, energy, destinations, music, textures, gourmand preferences, ambiance, and natural elements. Improved matching algorithm with weighted scoring, category preferences detection, notes matching, and diversity in recommendations. Ready for comprehensive testing of the quiz flow and perfume recommendations."
+  - agent: "testing"
+    message: "Completed backend API testing. All endpoints (GET /api/, POST /api/status, GET /api/status) are working correctly. MongoDB connection is functioning properly and data persistence is verified. CORS is correctly configured to allow cross-origin requests. The backend is stable and ready to support the frontend application."
