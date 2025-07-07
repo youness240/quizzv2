@@ -58,7 +58,7 @@ def test_get_status_checks():
     """Test the GET /api/status endpoint"""
     print("\n=== Testing Get Status Checks ===")
     try:
-        response = requests.get(f"{API_BASE_URL}/status")
+        response = requests.get(f"{API_BASE_URL}/status", timeout=REQUEST_TIMEOUT)
         print(f"Status Code: {response.status_code}")
         print(f"Response contains {len(response.json())} status checks")
         
