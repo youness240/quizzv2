@@ -46,11 +46,7 @@ const QuizPage = ({ onComplete }) => {
     <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50 to-rose-50 py-8 px-4">
       <div className="max-w-4xl mx-auto">
         {/* Progress Bar */}
-        <motion.div 
-          className="mb-8"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
+        <div className="mb-8">
           <div className="flex justify-between items-center mb-4">
             <span className="text-sm text-stone-600 font-medium">
               Question {currentQuestion + 1} of {quizQuestions.length}
@@ -60,51 +56,36 @@ const QuizPage = ({ onComplete }) => {
             </span>
           </div>
           <Progress value={progress} className="h-2" />
-        </motion.div>
+        </div>
 
         {/* Question Card */}
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentQuestion}
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Card className="mb-8 bg-white/80 backdrop-blur-sm border-amber-200 shadow-xl">
-              <CardContent className="p-8">
-                <h2 className="text-3xl md:text-4xl font-serif text-stone-800 mb-8 leading-relaxed">
-                  {question.question}
-                </h2>
+        <div key={currentQuestion}>
+          <Card className="mb-8 bg-white/80 backdrop-blur-sm border-amber-200 shadow-xl">
+            <CardContent className="p-8">
+              <h2 className="text-3xl md:text-4xl font-serif text-stone-800 mb-8 leading-relaxed">
+                {question.question}
+              </h2>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  {question.options.map((option, index) => (
-                    <motion.div
-                      key={option.value}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {question.options.map((option, index) => (
+                  <div key={option.value}>
+                    <Button
+                      variant={selectedOption === option.value ? "default" : "outline"}
+                      className={`w-full p-6 text-left justify-start h-auto font-serif text-lg transition-all duration-300 ${
+                        selectedOption === option.value
+                          ? 'bg-gradient-to-r from-amber-600 to-rose-600 text-white border-amber-300 shadow-lg'
+                          : 'bg-white/60 text-stone-700 border-amber-200 hover:bg-amber-50 hover:border-amber-300'
+                      }`}
+                      onClick={() => handleOptionSelect(option.value)}
                     >
-                      <Button
-                        variant={selectedOption === option.value ? "default" : "outline"}
-                        className={`w-full p-6 text-left justify-start h-auto font-serif text-lg transition-all duration-300 ${
-                          selectedOption === option.value
-                            ? 'bg-gradient-to-r from-amber-600 to-rose-600 text-white border-amber-300 shadow-lg'
-                            : 'bg-white/60 text-stone-700 border-amber-200 hover:bg-amber-50 hover:border-amber-300'
-                        }`}
-                        onClick={() => handleOptionSelect(option.value)}
-                      >
-                        {option.label}
-                      </Button>
-                    </motion.div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        </AnimatePresence>
+                      {option.label}
+                    </Button>
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
 
         {/* Navigation Buttons */}
         <motion.div 
