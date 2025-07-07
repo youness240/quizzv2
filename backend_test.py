@@ -38,7 +38,7 @@ def test_create_status_check():
     print("\n=== Testing Create Status Check ===")
     try:
         payload = {"client_name": "backend_test_client"}
-        response = requests.post(f"{API_BASE_URL}/status", json=payload)
+        response = requests.post(f"{API_BASE_URL}/status", json=payload, timeout=REQUEST_TIMEOUT)
         print(f"Status Code: {response.status_code}")
         print(f"Response: {response.json()}")
         
