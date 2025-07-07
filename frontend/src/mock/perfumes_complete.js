@@ -794,89 +794,102 @@ export const perfumes = [
   }
 ];
 
-// Questions du quiz (restent identiques)
+// Questions du quiz améliorées pour une expérience plus agréable et pertinente
 export const quizQuestions = [
   {
     id: 1,
-    question: "Si votre humeur avait une couleur aujourd'hui, laquelle serait-ce ?",
-    type: "color",
+    question: "Quel moment de la journée correspond le mieux à votre énergie ?",
+    type: "energy",
     options: [
-      { value: "golden", label: "Ambre Doré", personality: ["chaleureux", "confiant"], mood: ["énergique", "optimiste"] },
-      { value: "deep-purple", label: "Pourpre Profond", personality: ["mystérieux", "sophistiqué"], mood: ["mystérieux", "passionné"] },
-      { value: "soft-pink", label: "Rose Tendre", personality: ["doux", "romantique"], mood: ["romantique", "paisible"] },
-      { value: "forest-green", label: "Vert Forêt", personality: ["enraciné", "naturel"], mood: ["paisible", "aventurier"] },
-      { value: "midnight-blue", label: "Bleu Minuit", personality: ["rêveur", "éthéré"], mood: ["rêveur", "mystérieux"] }
+      { value: "dawn", label: "L'aube - Fraîcheur et renouveau", personality: ["frais", "optimiste", "énergique"], mood: ["énergique", "optimiste", "frais"] },
+      { value: "morning", label: "Le matin - Dynamisme et clarté", personality: ["énergique", "confiant", "moderne"], mood: ["confiant", "énergique", "moderne"] },
+      { value: "afternoon", label: "L'après-midi - Chaleur et luminosité", personality: ["chaleureux", "lumineux", "joyeux"], mood: ["joyeux", "ensoleillé", "optimiste"] },
+      { value: "evening", label: "Le soir - Sophistication et mystère", personality: ["sophistiqué", "mystérieux", "élégant"], mood: ["sophistiqué", "mystérieux", "élégant"] },
+      { value: "night", label: "La nuit - Intimité et profondeur", personality: ["mystique", "sensuel", "profond"], mood: ["mystérieux", "sensuel", "intime"] }
     ]
   },
   {
     id: 2,
-    question: "Choisissez un lieu pour votre évasion parfaite :",
-    type: "setting",
+    question: "Quelle saveur vous fait le plus saliver ?",
+    type: "taste",
     options: [
-      { value: "jazz-bar", label: "Un bar de jazz enfumé", personality: ["sophistiqué", "audacieux"], mood: ["mystérieux", "confiant"] },
-      { value: "rose-garden", label: "Un jardin de roses à l'aube", personality: ["romantique", "doux"], mood: ["paisible", "romantique"] },
-      { value: "spice-market", label: "Un marché d'épices marocain", personality: ["aventurier", "exotique"], mood: ["aventurier", "énergique"] },
-      { value: "library", label: "Une bibliothèque ancestrale", personality: ["intellectuel", "raffiné"], mood: ["concentré", "paisible"] },
-      { value: "beach", label: "Une plage secrète", personality: ["libre", "naturel"], mood: ["paisible", "optimiste"] }
+      { value: "sweet", label: "Sucré - Caramel, vanille, miel", personality: ["gourmand", "doux", "réconfortant"], mood: ["gourmand", "réconfortant", "doux"] },
+      { value: "spicy", label: "Épicé - Cannelle, poivre, gingembre", personality: ["épicé", "audacieux", "chaleureux"], mood: ["audacieux", "énergique", "chaleureux"] },
+      { value: "fresh", label: "Frais - Agrumes, menthe, eucalyptus", personality: ["frais", "énergique", "moderne"], mood: ["frais", "énergique", "optimiste"] },
+      { value: "floral", label: "Floral - Rose, jasmin, pivoine", personality: ["floral", "romantique", "délicat"], mood: ["romantique", "paisible", "harmonieux"] },
+      { value: "woody", label: "Boisé - Santal, cèdre, patchouli", personality: ["boisé", "sophistiqué", "ancré"], mood: ["paisible", "sophistiqué", "ancré"] }
     ]
   },
   {
     id: 3,
-    question: "Quelle texture vous ressemble le plus ?",
-    type: "texture",
+    question: "Quelle destination vous fait rêver en ce moment ?",
+    type: "destination",
     options: [
-      { value: "velvet", label: "Velours", personality: ["luxueux", "sensuel"], mood: ["romantique", "confiant"] },
-      { value: "leather", label: "Cuir", personality: ["fort", "audacieux"], mood: ["confiant", "puissant"] },
-      { value: "silk", label: "Soie", personality: ["élégant", "gracieux"], mood: ["paisible", "raffiné"] },
-      { value: "wood", label: "Bois", personality: ["enraciné", "naturel"], mood: ["paisible", "concentré"] },
-      { value: "cashmere", label: "Cachemire", personality: ["chaleureux", "doux"], mood: ["confortable", "romantique"] }
+      { value: "tropical", label: "Île tropicale - Cocotiers et lagons", personality: ["tropical", "libre", "exotique"], mood: ["relaxant", "tropical", "joyeux"] },
+      { value: "oriental", label: "Palais oriental - Marrakech, Istanbul", personality: ["oriental", "mystique", "luxueux"], mood: ["mystérieux", "luxueux", "sophistiqué"] },
+      { value: "parisian", label: "Paris romantique - Cafés et jardins", personality: ["parisien", "romantique", "élégant"], mood: ["romantique", "sophistiqué", "urbain"] },
+      { value: "nature", label: "Forêt enchantée - Verdure et sérénité", personality: ["naturel", "paisible", "boisé"], mood: ["paisible", "naturel", "harmonieux"] },
+      { value: "modern", label: "Ville moderne - Gratte-ciels et innovation", personality: ["moderne", "énergique", "urbain"], mood: ["moderne", "énergique", "confiant"] }
     ]
   },
   {
     id: 4,
-    question: "Quel moment de la journée parle à votre âme ?",
-    type: "time",
+    question: "Quel type de musique vous transporte le plus ?",
+    type: "music",
     options: [
-      { value: "dawn", label: "L'aube - Premières lueurs", personality: ["frais", "optimiste"], mood: ["énergique", "paisible"] },
-      { value: "golden-hour", label: "Heure dorée - Coucher de soleil", personality: ["chaleureux", "romantique"], mood: ["romantique", "optimiste"] },
-      { value: "midnight", label: "Minuit - Nuit profonde", personality: ["mystérieux", "intense"], mood: ["mystérieux", "passionné"] },
-      { value: "afternoon", label: "Après-midi - Soleil brillant", personality: ["énergique", "confiant"], mood: ["énergique", "confiant"] },
-      { value: "twilight", label: "Crépuscule - Douceur violette", personality: ["rêveur", "sophistiqué"], mood: ["rêveur", "mystérieux"] }
+      { value: "classical", label: "Classique - Symphonies et opéras", personality: ["raffiné", "sophistiqué", "élégant"], mood: ["sophistiqué", "paisible", "élégant"] },
+      { value: "jazz", label: "Jazz - Improvisation et sensualité", personality: ["sophistiqué", "mystérieux", "sensuel"], mood: ["mystérieux", "sensuel", "sophistiqué"] },
+      { value: "pop", label: "Pop - Mélodies entraînantes", personality: ["joyeux", "moderne", "énergique"], mood: ["joyeux", "énergique", "optimiste"] },
+      { value: "world", label: "Musique du monde - Découvertes exotiques", personality: ["exotique", "aventurier", "oriental"], mood: ["exotique", "aventurier", "mystérieux"] },
+      { value: "electronic", label: "Électronique - Sonorités futuristes", personality: ["moderne", "mystique", "audacieux"], mood: ["moderne", "audacieux", "énergique"] }
     ]
   },
   {
     id: 5,
-    question: "Si vous étiez une saison, laquelle seriez-vous ?",
-    type: "season",
+    question: "Quelle texture vous attire le plus ?",
+    type: "texture",
     options: [
-      { value: "spring", label: "Printemps - Floraisons fraîches", personality: ["frais", "optimiste"], mood: ["joyeux", "énergique"] },
-      { value: "summer", label: "Été - Chaleur dorée", personality: ["chaleureux", "confiant"], mood: ["énergique", "confiant"] },
-      { value: "autumn", label: "Automne - Élégance riche", personality: ["sophistiqué", "chaleureux"], mood: ["nostalgique", "confortable"] },
-      { value: "winter", label: "Hiver - Mystère cristallin", personality: ["mystérieux", "raffiné"], mood: ["paisible", "mystérieux"] }
+      { value: "velvet", label: "Velours - Douceur luxueuse", personality: ["luxueux", "sensuel", "doux"], mood: ["luxueux", "sensuel", "réconfortant"] },
+      { value: "silk", label: "Soie - Élégance raffinée", personality: ["élégant", "sophistiqué", "précieux"], mood: ["sophistiqué", "élégant", "harmonieux"] },
+      { value: "cashmere", label: "Cachemire - Confort absolu", personality: ["doux", "réconfortant", "chaleureux"], mood: ["réconfortant", "chaleureux", "paisible"] },
+      { value: "leather", label: "Cuir - Caractère affirmé", personality: ["audacieux", "fort", "mystérieux"], mood: ["audacieux", "confiant", "mystérieux"] },
+      { value: "cotton", label: "Coton - Simplicité naturelle", personality: ["naturel", "simple", "frais"], mood: ["frais", "naturel", "paisible"] }
     ]
   },
   {
     id: 6,
-    question: "Quel type de musique émeut votre esprit ?",
-    type: "music",
+    question: "Quel parfum gourmand vous fait le plus envie ?",
+    type: "gourmand",
     options: [
-      { value: "classical", label: "Symphonie classique", personality: ["raffiné", "sophistiqué"], mood: ["paisible", "concentré"] },
-      { value: "jazz", label: "Jazz enfumé", personality: ["sophistiqué", "mystérieux"], mood: ["mystérieux", "confiant"] },
-      { value: "acoustic", label: "Folk acoustique", personality: ["naturel", "doux"], mood: ["paisible", "nostalgique"] },
-      { value: "electronic", label: "Électronique ambient", personality: ["moderne", "rêveur"], mood: ["rêveur", "énergique"] },
-      { value: "world", label: "Musique du monde", personality: ["exotique", "aventurier"], mood: ["aventurier", "mystérieux"] }
+      { value: "vanilla", label: "Vanille crémeuse", personality: ["gourmand", "doux", "réconfortant"], mood: ["gourmand", "réconfortant", "doux"] },
+      { value: "chocolate", label: "Chocolat noir intense", personality: ["gourmand", "mystérieux", "sensuel"], mood: ["sensuel", "mystérieux", "gourmand"] },
+      { value: "caramel", label: "Caramel au beurre salé", personality: ["gourmand", "chaleureux", "séduisant"], mood: ["gourmand", "chaleureux", "séduisant"] },
+      { value: "coffee", label: "Café fraîchement torréfié", personality: ["énergique", "moderne", "audacieux"], mood: ["énergique", "moderne", "audacieux"] },
+      { value: "honey", label: "Miel doré", personality: ["gourmand", "naturel", "chaleureux"], mood: ["gourmand", "chaleureux", "naturel"] }
     ]
   },
   {
     id: 7,
-    question: "Votre soirée idéale serait :",
-    type: "evening",
+    question: "Quelle ambiance vous correspond le mieux ?",
+    type: "ambiance",
     options: [
-      { value: "candlelit-dinner", label: "Dîner aux chandelles en tête-à-tête", personality: ["romantique", "intime"], mood: ["romantique", "paisible"] },
-      { value: "art-gallery", label: "Explorer une galerie d'art", personality: ["intellectuel", "sophistiqué"], mood: ["concentré", "inspiré"] },
-      { value: "stargazing", label: "Contempler les étoiles dans la nature", personality: ["rêveur", "naturel"], mood: ["paisible", "mystérieux"] },
-      { value: "live-music", label: "Concert de musique live", personality: ["énergique", "social"], mood: ["énergique", "confiant"] },
-      { value: "cozy-reading", label: "Lecture dans un coin douillet", personality: ["doux", "intellectuel"], mood: ["confortable", "paisible"] }
+      { value: "romantic", label: "Romantique - Dîner aux chandelles", personality: ["romantique", "sensuel", "élégant"], mood: ["romantique", "sensuel", "intime"] },
+      { value: "adventurous", label: "Aventurier - Exploration et découverte", personality: ["aventurier", "libre", "audacieux"], mood: ["aventurier", "libre", "audacieux"] },
+      { value: "sophisticated", label: "Sophistiqué - Galerie d'art privée", personality: ["sophistiqué", "raffiné", "élégant"], mood: ["sophistiqué", "élégant", "cultivé"] },
+      { value: "peaceful", label: "Paisible - Méditation dans la nature", personality: ["paisible", "naturel", "harmonieux"], mood: ["paisible", "harmonieux", "ancré"] },
+      { value: "energetic", label: "Énergique - Fête entre amis", personality: ["énergique", "joyeux", "social"], mood: ["énergique", "joyeux", "social"] }
+    ]
+  },
+  {
+    id: 8,
+    question: "Quel élément naturel vous inspire le plus ?",
+    type: "element",
+    options: [
+      { value: "fire", label: "Feu - Passion et énergie", personality: ["passionné", "énergique", "audacieux"], mood: ["passionné", "énergique", "audacieux"] },
+      { value: "water", label: "Eau - Fluidité et sérénité", personality: ["fluide", "paisible", "mystérieux"], mood: ["paisible", "mystérieux", "harmonieux"] },
+      { value: "earth", label: "Terre - Stabilité et authenticité", personality: ["authentique", "stable", "naturel"], mood: ["ancré", "naturel", "stable"] },
+      { value: "air", label: "Air - Liberté et légèreté", personality: ["libre", "léger", "frais"], mood: ["libre", "frais", "optimiste"] },
+      { value: "wood", label: "Bois - Sagesse et profondeur", personality: ["sage", "profond", "boisé"], mood: ["sophistiqué", "ancré", "mystérieux"] }
     ]
   }
 ];
