@@ -88,12 +88,7 @@ const QuizPage = ({ onComplete }) => {
         </div>
 
         {/* Navigation Buttons */}
-        <motion.div 
-          className="flex justify-between items-center"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-        >
+        <div className="flex justify-between items-center">
           <Button
             variant="outline"
             onClick={handlePrevious}
@@ -110,7 +105,7 @@ const QuizPage = ({ onComplete }) => {
           >
             {currentQuestion === quizQuestions.length - 1 ? 'Discover My Scents' : 'Next'}
           </Button>
-        </motion.div>
+        </div>
       </div>
     </div>
   );
