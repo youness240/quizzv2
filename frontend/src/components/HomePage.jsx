@@ -9,31 +9,31 @@ const HomePage = ({ onStartQuiz }) => {
         {/* Logo/Brand */}
         <div className="mb-12">
           <h1 className="text-5xl md:text-7xl font-serif text-amber-900 mb-4 tracking-wide">
-            Atelier
+            Collection Azynti
           </h1>
           <div className="w-32 h-0.5 bg-gradient-to-r from-amber-400 to-rose-400 mx-auto opacity-60"></div>
         </div>
 
-        {/* Poetic invitation */}
+        {/* Invitation poétique */}
         <div className="max-w-4xl mx-auto mb-16">
           <p className="text-2xl md:text-3xl font-serif text-stone-700 leading-relaxed mb-8 italic">
-            "In the silence between heartbeats,
+            "Dans le silence entre les battements de cœur,
             <br />
-            your perfect scent awaits discovery."
+            votre parfum parfait attend d'être découvert."
           </p>
           <p className="text-lg md:text-xl text-stone-600 leading-relaxed max-w-2xl mx-auto">
-            Embark on a sensory journey through questions that dance with your soul, 
-            unveiling fragrances that speak your unspoken language.
+            Embarquez pour un voyage sensoriel à travers des questions qui dansent avec votre âme, 
+            révélant des fragrances qui parlent votre langage secret.
           </p>
         </div>
 
-        {/* CTA Button */}
+        {/* Bouton CTA */}
         <div>
           <Button 
             onClick={onStartQuiz}
             className="bg-gradient-to-r from-amber-600 to-rose-600 hover:from-amber-700 hover:to-rose-700 text-white px-12 py-6 text-xl font-serif rounded-full shadow-2xl transition-all duration-300 border-2 border-amber-200 hover:border-amber-300"
           >
-            Begin Your Journey
+            Commencer Votre Voyage
           </Button>
         </div>
       </div>

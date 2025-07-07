@@ -45,11 +45,11 @@ const QuizPage = ({ onComplete }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50 to-rose-50 py-8 px-4">
       <div className="max-w-4xl mx-auto">
-        {/* Progress Bar */}
+        {/* Barre de progression */}
         <div className="mb-8">
           <div className="flex justify-between items-center mb-4">
             <span className="text-sm text-stone-600 font-medium">
-              Question {currentQuestion + 1} of {quizQuestions.length}
+              Question {currentQuestion + 1} sur {quizQuestions.length}
             </span>
             <span className="text-sm text-stone-600 font-medium">
               {Math.round(progress)}%
@@ -58,7 +58,7 @@ const QuizPage = ({ onComplete }) => {
           <Progress value={progress} className="h-2" />
         </div>
 
-        {/* Question Card */}
+        {/* Carte de question */}
         <div key={currentQuestion}>
           <Card className="mb-8 bg-white/80 backdrop-blur-sm border-amber-200 shadow-xl">
             <CardContent className="p-8">
@@ -87,7 +87,7 @@ const QuizPage = ({ onComplete }) => {
           </Card>
         </div>
 
-        {/* Navigation Buttons */}
+        {/* Boutons de navigation */}
         <div className="flex justify-between items-center">
           <Button
             variant="outline"
@@ -95,7 +95,7 @@ const QuizPage = ({ onComplete }) => {
             disabled={currentQuestion === 0}
             className="px-8 py-3 font-serif text-lg border-amber-200 hover:bg-amber-50 disabled:opacity-50"
           >
-            Previous
+            Précédent
           </Button>
 
           <Button
@@ -103,7 +103,7 @@ const QuizPage = ({ onComplete }) => {
             disabled={!selectedOption}
             className="px-8 py-3 font-serif text-lg bg-gradient-to-r from-amber-600 to-rose-600 hover:from-amber-700 hover:to-rose-700 text-white disabled:opacity-50"
           >
-            {currentQuestion === quizQuestions.length - 1 ? 'Discover My Scents' : 'Next'}
+            {currentQuestion === quizQuestions.length - 1 ? 'Découvrir Mes Parfums' : 'Suivant'}
           </Button>
         </div>
       </div>

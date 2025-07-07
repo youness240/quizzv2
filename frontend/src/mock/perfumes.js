@@ -3,176 +3,176 @@ export const perfumes = [
     id: 1,
     name: "Tonka",
     category: "Gourmand",
-    description: "A warm embrace of vanilla and bitter almond, like the last golden hour of autumn wrapped in cashmere.",
-    notes: ["Vanilla", "Tonka Bean", "Bitter Almond", "Sandalwood"],
-    personality: ["warm", "sensual", "cozy", "elegant"],
-    mood: ["romantic", "confident", "relaxed"]
+    description: "Une étreinte chaleureuse de vanille et d'amande amère, comme la dernière heure dorée d'automne enveloppée dans du cachemire.",
+    notes: ["Vanille", "Fève Tonka", "Amande Amère", "Santal"],
+    personality: ["chaleureux", "sensuel", "cosy", "élégant"],
+    mood: ["romantique", "confiant", "détendu"]
   },
   {
     id: 2,
     name: "Ce Soir",
     category: "Oriental",
-    description: "The mystery of twilight captured in a bottle - smoky incense dancing with rose petals under a velvet sky.",
-    notes: ["Rose", "Incense", "Oud", "Amber"],
-    personality: ["mysterious", "sophisticated", "bold", "dramatic"],
-    mood: ["seductive", "powerful", "mysterious"]
+    description: "Le mystère du crépuscule capturé dans un flacon - encens fumé dansant avec des pétales de rose sous un ciel de velours.",
+    notes: ["Rose", "Encens", "Oud", "Ambre"],
+    personality: ["mystérieux", "sophistiqué", "audacieux", "dramatique"],
+    mood: ["séduisant", "puissant", "mystérieux"]
   },
   {
     id: 3,
     name: "La Nota",
     category: "Floral",
-    description: "A symphony of white flowers that whispers secrets of Mediterranean gardens kissed by morning dew.",
-    notes: ["Jasmine", "Tuberose", "White Tea", "Bergamot"],
-    personality: ["fresh", "feminine", "graceful", "pure"],
-    mood: ["joyful", "peaceful", "optimistic"]
+    description: "Une symphonie de fleurs blanches qui murmure les secrets des jardins méditerranéens embrassés par la rosée matinale.",
+    notes: ["Jasmin", "Tubéreuse", "Thé Blanc", "Bergamote"],
+    personality: ["frais", "féminin", "gracieux", "pur"],
+    mood: ["joyeux", "paisible", "optimiste"]
   },
   {
     id: 4,
     name: "So Mula",
-    category: "Woody",
-    description: "The essence of ancient forests and leather-bound books, where wisdom meets wild sophistication.",
-    notes: ["Cedar", "Vetiver", "Leather", "Black Pepper"],
-    personality: ["strong", "intellectual", "grounded", "confident"],
-    mood: ["focused", "determined", "adventurous"]
+    category: "Boisé",
+    description: "L'essence des forêts ancestrales et des livres reliés de cuir, où la sagesse rencontre la sophistication sauvage.",
+    notes: ["Cèdre", "Vétiver", "Cuir", "Poivre Noir"],
+    personality: ["fort", "intellectuel", "enraciné", "confiant"],
+    mood: ["concentré", "déterminé", "aventurier"]
   },
   {
     id: 5,
     name: "Red Chroniq",
-    category: "Spicy",
-    description: "Time stands still in this intoxicating blend of crimson spices and dark chocolate passion.",
-    notes: ["Cinnamon", "Dark Chocolate", "Red Wine", "Clove"],
-    personality: ["passionate", "intense", "bold", "magnetic"],
-    mood: ["passionate", "energetic", "confident"]
+    category: "Épicé",
+    description: "Le temps s'arrête dans ce mélange enivrant d'épices cramoisies et de passion chocolat noir.",
+    notes: ["Cannelle", "Chocolat Noir", "Vin Rouge", "Clou de Girofle"],
+    personality: ["passionné", "intense", "audacieux", "magnétique"],
+    mood: ["passionné", "énergique", "confiant"]
   },
   {
     id: 6,
     name: "Mozak Latte",
     category: "Gourmand",
-    description: "Morning rituals transformed into liquid poetry - espresso dreams with hints of hazelnut and cream.",
-    notes: ["Coffee", "Hazelnut", "Vanilla Cream", "Caramel"],
-    personality: ["energetic", "creative", "warm", "approachable"],
-    mood: ["energetic", "creative", "comfortable"]
+    description: "Les rituels matinaux transformés en poésie liquide - rêves d'espresso avec des notes de noisette et de crème.",
+    notes: ["Café", "Noisette", "Crème Vanille", "Caramel"],
+    personality: ["énergique", "créatif", "chaleureux", "accessible"],
+    mood: ["énergique", "créatif", "confortable"]
   },
   {
     id: 7,
     name: "Oud Orange",
     category: "Oud",
-    description: "Where ancient Middle Eastern traditions meet Mediterranean sunshine in perfect harmony.",
-    notes: ["Oud", "Orange Blossom", "Saffron", "Rose"],
-    personality: ["exotic", "luxurious", "sophisticated", "unique"],
-    mood: ["mysterious", "confident", "exotic"]
+    description: "Là où les traditions ancestrales du Moyen-Orient rencontrent le soleil méditerranéen en parfaite harmonie.",
+    notes: ["Oud", "Fleur d'Oranger", "Safran", "Rose"],
+    personality: ["exotique", "luxueux", "sophistiqué", "unique"],
+    mood: ["mystérieux", "confiant", "exotique"]
   },
   {
     id: 8,
     name: "Powder",
-    category: "Powdery",
-    description: "Soft as a whispered promise, this delicate cloud of iris and musk evokes cherished memories.",
-    notes: ["Iris", "White Musk", "Violet", "Cashmere Wood"],
-    personality: ["gentle", "elegant", "nostalgic", "refined"],
-    mood: ["peaceful", "romantic", "nostalgic"]
+    category: "Poudré",
+    description: "Doux comme une promesse murmurée, ce nuage délicat d'iris et de musc évoque des souvenirs chéris.",
+    notes: ["Iris", "Musc Blanc", "Violette", "Bois de Cachemire"],
+    personality: ["doux", "élégant", "nostalgique", "raffiné"],
+    mood: ["paisible", "romantique", "nostalgique"]
   },
   {
     id: 9,
     name: "So Velorum",
     category: "Floral",
-    description: "Midnight blooms under starlight - a celestial garden where jasmine meets moonbeams.",
-    notes: ["Night-blooming Jasmine", "Moonflower", "Silver Musk", "Sandalwood"],
-    personality: ["dreamy", "ethereal", "mysterious", "feminine"],
-    mood: ["dreamy", "peaceful", "mysterious"]
+    description: "Fleurs de minuit sous la lumière des étoiles - un jardin céleste où le jasmin rencontre les rayons de lune.",
+    notes: ["Jasmin Nocturne", "Fleur de Lune", "Musc Argenté", "Santal"],
+    personality: ["rêveur", "éthéré", "mystérieux", "féminin"],
+    mood: ["rêveur", "paisible", "mystérieux"]
   },
   {
     id: 10,
     name: "Kirke",
-    category: "Woody",
-    description: "The enchantress's secret - wild herbs and smoky woods that bewitch the senses.",
-    notes: ["Wild Herbs", "Smoky Woods", "Ambergris", "Green Leaves"],
-    personality: ["wild", "magnetic", "natural", "powerful"],
-    mood: ["adventurous", "mysterious", "powerful"]
+    category: "Boisé",
+    description: "Le secret de l'enchanteresse - herbes sauvages et bois fumés qui envoûtent les sens.",
+    notes: ["Herbes Sauvages", "Bois Fumés", "Ambre Gris", "Feuilles Vertes"],
+    personality: ["sauvage", "magnétique", "naturel", "puissant"],
+    mood: ["aventurier", "mystérieux", "puissant"]
   }
 ];
 
 export const quizQuestions = [
   {
     id: 1,
-    question: "If your mood had a color today, what would it be?",
+    question: "Si votre humeur avait une couleur aujourd'hui, laquelle serait-ce ?",
     type: "color",
     options: [
-      { value: "golden", label: "Golden Amber", personality: ["warm", "confident"], mood: ["energetic", "optimistic"] },
-      { value: "deep-purple", label: "Deep Purple", personality: ["mysterious", "sophisticated"], mood: ["mysterious", "passionate"] },
-      { value: "soft-pink", label: "Soft Rose", personality: ["gentle", "romantic"], mood: ["romantic", "peaceful"] },
-      { value: "forest-green", label: "Forest Green", personality: ["grounded", "natural"], mood: ["peaceful", "adventurous"] },
-      { value: "midnight-blue", label: "Midnight Blue", personality: ["dreamy", "ethereal"], mood: ["dreamy", "mysterious"] }
+      { value: "golden", label: "Ambre Doré", personality: ["chaleureux", "confiant"], mood: ["énergique", "optimiste"] },
+      { value: "deep-purple", label: "Pourpre Profond", personality: ["mystérieux", "sophistiqué"], mood: ["mystérieux", "passionné"] },
+      { value: "soft-pink", label: "Rose Tendre", personality: ["doux", "romantique"], mood: ["romantique", "paisible"] },
+      { value: "forest-green", label: "Vert Forêt", personality: ["enraciné", "naturel"], mood: ["paisible", "aventurier"] },
+      { value: "midnight-blue", label: "Bleu Minuit", personality: ["rêveur", "éthéré"], mood: ["rêveur", "mystérieux"] }
     ]
   },
   {
     id: 2,
-    question: "Choose a setting for your perfect escape:",
+    question: "Choisissez un lieu pour votre évasion parfaite :",
     type: "setting",
     options: [
-      { value: "jazz-bar", label: "A smoky jazz bar", personality: ["sophisticated", "bold"], mood: ["mysterious", "confident"] },
-      { value: "rose-garden", label: "A rose garden at dawn", personality: ["romantic", "gentle"], mood: ["peaceful", "romantic"] },
-      { value: "spice-market", label: "A Moroccan spice market", personality: ["adventurous", "exotic"], mood: ["adventurous", "energetic"] },
-      { value: "library", label: "An ancient library", personality: ["intellectual", "refined"], mood: ["focused", "peaceful"] },
-      { value: "beach", label: "A secluded beach", personality: ["free", "natural"], mood: ["peaceful", "optimistic"] }
+      { value: "jazz-bar", label: "Un bar de jazz enfumé", personality: ["sophistiqué", "audacieux"], mood: ["mystérieux", "confiant"] },
+      { value: "rose-garden", label: "Un jardin de roses à l'aube", personality: ["romantique", "doux"], mood: ["paisible", "romantique"] },
+      { value: "spice-market", label: "Un marché d'épices marocain", personality: ["aventurier", "exotique"], mood: ["aventurier", "énergique"] },
+      { value: "library", label: "Une bibliothèque ancestrale", personality: ["intellectuel", "raffiné"], mood: ["concentré", "paisible"] },
+      { value: "beach", label: "Une plage secrète", personality: ["libre", "naturel"], mood: ["paisible", "optimiste"] }
     ]
   },
   {
     id: 3,
-    question: "What texture feels the most like you?",
+    question: "Quelle texture vous ressemble le plus ?",
     type: "texture",
     options: [
-      { value: "velvet", label: "Velvet", personality: ["luxurious", "sensual"], mood: ["romantic", "confident"] },
-      { value: "leather", label: "Leather", personality: ["strong", "bold"], mood: ["confident", "powerful"] },
-      { value: "silk", label: "Silk", personality: ["elegant", "graceful"], mood: ["peaceful", "refined"] },
-      { value: "wood", label: "Wood", personality: ["grounded", "natural"], mood: ["peaceful", "focused"] },
-      { value: "cashmere", label: "Cashmere", personality: ["warm", "gentle"], mood: ["comfortable", "romantic"] }
+      { value: "velvet", label: "Velours", personality: ["luxueux", "sensuel"], mood: ["romantique", "confiant"] },
+      { value: "leather", label: "Cuir", personality: ["fort", "audacieux"], mood: ["confiant", "puissant"] },
+      { value: "silk", label: "Soie", personality: ["élégant", "gracieux"], mood: ["paisible", "raffiné"] },
+      { value: "wood", label: "Bois", personality: ["enraciné", "naturel"], mood: ["paisible", "concentré"] },
+      { value: "cashmere", label: "Cachemire", personality: ["chaleureux", "doux"], mood: ["confortable", "romantique"] }
     ]
   },
   {
     id: 4,
-    question: "Which time of day speaks to your soul?",
+    question: "Quel moment de la journée parle à votre âme ?",
     type: "time",
     options: [
-      { value: "dawn", label: "Dawn - First light", personality: ["fresh", "optimistic"], mood: ["energetic", "peaceful"] },
-      { value: "golden-hour", label: "Golden Hour - Warm sunset", personality: ["warm", "romantic"], mood: ["romantic", "optimistic"] },
-      { value: "midnight", label: "Midnight - Deep night", personality: ["mysterious", "intense"], mood: ["mysterious", "passionate"] },
-      { value: "afternoon", label: "Afternoon - Bright sun", personality: ["energetic", "confident"], mood: ["energetic", "confident"] },
-      { value: "twilight", label: "Twilight - Purple dusk", personality: ["dreamy", "sophisticated"], mood: ["dreamy", "mysterious"] }
+      { value: "dawn", label: "L'aube - Premières lueurs", personality: ["frais", "optimiste"], mood: ["énergique", "paisible"] },
+      { value: "golden-hour", label: "Heure dorée - Coucher de soleil", personality: ["chaleureux", "romantique"], mood: ["romantique", "optimiste"] },
+      { value: "midnight", label: "Minuit - Nuit profonde", personality: ["mystérieux", "intense"], mood: ["mystérieux", "passionné"] },
+      { value: "afternoon", label: "Après-midi - Soleil brillant", personality: ["énergique", "confiant"], mood: ["énergique", "confiant"] },
+      { value: "twilight", label: "Crépuscule - Douceur violette", personality: ["rêveur", "sophistiqué"], mood: ["rêveur", "mystérieux"] }
     ]
   },
   {
     id: 5,
-    question: "If you were a season, which would you be?",
+    question: "Si vous étiez une saison, laquelle seriez-vous ?",
     type: "season",
     options: [
-      { value: "spring", label: "Spring - Fresh blooms", personality: ["fresh", "optimistic"], mood: ["joyful", "energetic"] },
-      { value: "summer", label: "Summer - Golden warmth", personality: ["warm", "confident"], mood: ["energetic", "confident"] },
-      { value: "autumn", label: "Autumn - Rich elegance", personality: ["sophisticated", "warm"], mood: ["nostalgic", "comfortable"] },
-      { value: "winter", label: "Winter - Crisp mystery", personality: ["mysterious", "refined"], mood: ["peaceful", "mysterious"] }
+      { value: "spring", label: "Printemps - Floraisons fraîches", personality: ["frais", "optimiste"], mood: ["joyeux", "énergique"] },
+      { value: "summer", label: "Été - Chaleur dorée", personality: ["chaleureux", "confiant"], mood: ["énergique", "confiant"] },
+      { value: "autumn", label: "Automne - Élégance riche", personality: ["sophistiqué", "chaleureux"], mood: ["nostalgique", "confortable"] },
+      { value: "winter", label: "Hiver - Mystère cristallin", personality: ["mystérieux", "raffiné"], mood: ["paisible", "mystérieux"] }
     ]
   },
   {
     id: 6,
-    question: "What kind of music moves your spirit?",
+    question: "Quel type de musique émeut votre esprit ?",
     type: "music",
     options: [
-      { value: "classical", label: "Classical Symphony", personality: ["refined", "sophisticated"], mood: ["peaceful", "focused"] },
-      { value: "jazz", label: "Smoky Jazz", personality: ["sophisticated", "mysterious"], mood: ["mysterious", "confident"] },
-      { value: "acoustic", label: "Acoustic Folk", personality: ["natural", "gentle"], mood: ["peaceful", "nostalgic"] },
-      { value: "electronic", label: "Ambient Electronic", personality: ["modern", "dreamy"], mood: ["dreamy", "energetic"] },
-      { value: "world", label: "World Music", personality: ["exotic", "adventurous"], mood: ["adventurous", "mysterious"] }
+      { value: "classical", label: "Symphonie classique", personality: ["raffiné", "sophistiqué"], mood: ["paisible", "concentré"] },
+      { value: "jazz", label: "Jazz enfumé", personality: ["sophistiqué", "mystérieux"], mood: ["mystérieux", "confiant"] },
+      { value: "acoustic", label: "Folk acoustique", personality: ["naturel", "doux"], mood: ["paisible", "nostalgique"] },
+      { value: "electronic", label: "Électronique ambient", personality: ["moderne", "rêveur"], mood: ["rêveur", "énergique"] },
+      { value: "world", label: "Musique du monde", personality: ["exotique", "aventurier"], mood: ["aventurier", "mystérieux"] }
     ]
   },
   {
     id: 7,
-    question: "Your ideal evening would be:",
+    question: "Votre soirée idéale serait :",
     type: "evening",
     options: [
-      { value: "candlelit-dinner", label: "Candlelit dinner for two", personality: ["romantic", "intimate"], mood: ["romantic", "peaceful"] },
-      { value: "art-gallery", label: "Exploring an art gallery", personality: ["intellectual", "sophisticated"], mood: ["focused", "inspired"] },
-      { value: "stargazing", label: "Stargazing in nature", personality: ["dreamy", "natural"], mood: ["peaceful", "mysterious"] },
-      { value: "live-music", label: "Live music venue", personality: ["energetic", "social"], mood: ["energetic", "confident"] },
-      { value: "cozy-reading", label: "Cozy reading nook", personality: ["gentle", "intellectual"], mood: ["comfortable", "peaceful"] }
+      { value: "candlelit-dinner", label: "Dîner aux chandelles en tête-à-tête", personality: ["romantique", "intime"], mood: ["romantique", "paisible"] },
+      { value: "art-gallery", label: "Explorer une galerie d'art", personality: ["intellectuel", "sophistiqué"], mood: ["concentré", "inspiré"] },
+      { value: "stargazing", label: "Contempler les étoiles dans la nature", personality: ["rêveur", "naturel"], mood: ["paisible", "mystérieux"] },
+      { value: "live-music", label: "Concert de musique live", personality: ["énergique", "social"], mood: ["énergique", "confiant"] },
+      { value: "cozy-reading", label: "Lecture dans un coin douillet", personality: ["doux", "intellectuel"], mood: ["confortable", "paisible"] }
     ]
   }
 ];
@@ -181,7 +181,7 @@ export const calculatePerfumeMatch = (answers) => {
   const personalityScores = {};
   const moodScores = {};
   
-  // Calculate personality and mood scores based on answers
+  // Calculer les scores de personnalité et d'humeur basés sur les réponses
   answers.forEach(answer => {
     const question = quizQuestions.find(q => q.id === answer.questionId);
     const selectedOption = question.options.find(opt => opt.value === answer.value);
@@ -195,7 +195,7 @@ export const calculatePerfumeMatch = (answers) => {
     });
   });
   
-  // Score each perfume based on personality and mood matches
+  // Évaluer chaque parfum basé sur les correspondances de personnalité et d'humeur
   const scoredPerfumes = perfumes.map(perfume => {
     let score = 0;
     
@@ -210,7 +210,7 @@ export const calculatePerfumeMatch = (answers) => {
     return { ...perfume, score };
   });
   
-  // Sort by score and return top 3
+  // Trier par score et retourner les 3 meilleurs
   return scoredPerfumes
     .sort((a, b) => b.score - a.score)
     .slice(0, 3);
