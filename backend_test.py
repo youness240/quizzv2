@@ -87,7 +87,7 @@ def test_mongodb_connection():
         
         # Create a new status check
         create_payload = {"client_name": unique_client_name}
-        create_response = requests.post(f"{API_BASE_URL}/status", json=create_payload)
+        create_response = requests.post(f"{API_BASE_URL}/status", json=create_payload, timeout=REQUEST_TIMEOUT)
         assert create_response.status_code == 200, "Failed to create status check"
         
         # Get all status checks and verify our entry exists
