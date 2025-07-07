@@ -894,41 +894,166 @@ export const quizQuestions = [
   }
 ];
 
+// Algorithme de matching amélioré pour des recommandations plus précises
 export const calculatePerfumeMatch = (answers) => {
   const personalityScores = {};
   const moodScores = {};
+  const categoryPreferences = {};
   
-  // Calculer les scores de personnalité et d'humeur basés sur les réponses
+  // Calculer les scores de personnalité, d'humeur et de catégories basés sur les réponses
   answers.forEach(answer => {
     const question = quizQuestions.find(q => q.id === answer.questionId);
     const selectedOption = question.options.find(opt => opt.value === answer.value);
     
+    // Pondération basée sur le type de question
+    let weight = 1;
+    if (question.type === 'taste' || question.type === 'gourmand') weight = 1.5; // Plus d'importance aux préférences gustatives
+    if (question.type === 'ambiance' || question.type === 'energy') weight = 1.3; // Importance aux ambiances
+    
     selectedOption.personality.forEach(trait => {
-      personalityScores[trait] = (personalityScores[trait] || 0) + 1;
+      personalityScores[trait] = (personalityScores[trait] || 0) + weight;
     });
     
     selectedOption.mood.forEach(moodTrait => {
-      moodScores[moodTrait] = (moodScores[moodTrait] || 0) + 1;
+      moodScores[moodTrait] = (moodScores[moodTrait] || 0) + weight;
     });
+    
+    // Déduire les préférences de catégories des réponses
+    if (selectedOption.value === 'sweet' || selectedOption.value === 'vanilla' || selectedOption.value === 'chocolate') {
+      categoryPreferences['Gourmand'] = (categoryPreferences['Gourmand'] || 0) + 2;
+    }
+    if (selectedOption.value === 'spicy' || selectedOption.value === 'oriental') {
+      categoryPreferences['Oriental'] = (categoryPreferences['Oriental'] || 0) + 2;
+      categoryPreferences['Épicé'] = (categoryPreferences['Épicé'] || 0) + 2;
+    }
+    if (selectedOption.value === 'floral' || selectedOption.value === 'romantic') {
+      categoryPreferences['Floral'] = (categoryPreferences['Floral'] || 0) + 2;
+      categoryPreferences['Floral Oriental'] = (categoryPreferences['Floral Oriental'] || 0) + 1.5;
+    }
+    if (selectedOption.value === 'woody' || selectedOption.value === 'nature' || selectedOption.value === 'wood') {
+      categoryPreferences['Boisé'] = (categoryPreferences['Boisé'] || 0) + 2;
+      categoryPreferences['Oud'] = (categoryPreferences['Oud'] || 0) + 1.5;
+    }
+    if (selectedOption.value === 'fresh' || selectedOption.value === 'morning' || selectedOption.value === 'air') {
+      categoryPreferences['Frais'] = (categoryPreferences['Frais'] || 0) + 2;
+      categoryPreferences['Agrumes'] = (categoryPreferences['Agrumes'] || 0) + 1.5;
+    }
+    if (selectedOption.value === 'tropical' || selectedOption.value === 'water') {
+      categoryPreferences['Tropical'] = (categoryPreferences['Tropical'] || 0) + 2;
+      categoryPreferences['Aquatique'] = (categoryPreferences['Aquatique'] || 0) + 1.5;
+    }
+    if (selectedOption.value === 'night' || selectedOption.value === 'evening' || selectedOption.value === 'mysterious') {
+      categoryPreferences['Nocturne'] = (categoryPreferences['Nocturne'] || 0) + 2;
+      categoryPreferences['Sombre'] = (categoryPreferences['Sombre'] || 0) + 1.5;
+    }
+    if (selectedOption.value === 'luxurious' || selectedOption.value === 'velvet' || selectedOption.value === 'sophisticated') {
+      categoryPreferences['Luxe'] = (categoryPreferences['Luxe'] || 0) + 2;
+      categoryPreferences['Ambre'] = (categoryPreferences['Ambre'] || 0) + 1.5;
+    }
   });
   
-  // Évaluer chaque parfum basé sur les correspondances de personnalité et d'humeur
+  // Normaliser les scores pour éviter les biais
+  const maxPersonalityScore = Math.max(...Object.values(personalityScores));
+  const maxMoodScore = Math.max(...Object.values(moodScores));
+  const maxCategoryScore = Math.max(...Object.values(categoryPreferences));
+  
+  // Évaluer chaque parfum avec un système de scoring plus sophistiqué
   const scoredPerfumes = perfumes.map(perfume => {
     let score = 0;
+    let matchDetails = {
+      personalityMatch: 0,
+      moodMatch: 0,
+      categoryMatch: 0,
+      notesMatch: 0
+    };
     
+    // Score basé sur la personnalité (30% du score total)
     perfume.personality.forEach(trait => {
-      score += personalityScores[trait] || 0;
+      if (personalityScores[trait]) {
+        const normalizedScore = (personalityScores[trait] / maxPersonalityScore) * 3;
+        score += normalizedScore;
+        matchDetails.personalityMatch += normalizedScore;
+      }
     });
     
+    // Score basé sur l'humeur (30% du score total)
     perfume.mood.forEach(moodTrait => {
-      score += moodScores[moodTrait] || 0;
+      if (moodScores[moodTrait]) {
+        const normalizedScore = (moodScores[moodTrait] / maxMoodScore) * 3;
+        score += normalizedScore;
+        matchDetails.moodMatch += normalizedScore;
+      }
     });
     
-    return { ...perfume, score };
+    // Score basé sur la catégorie (25% du score total)
+    if (categoryPreferences[perfume.category]) {
+      const normalizedScore = (categoryPreferences[perfume.category] / maxCategoryScore) * 2.5;
+      score += normalizedScore;
+      matchDetails.categoryMatch = normalizedScore;
+    }
+    
+    // Score basé sur les notes spécifiques (15% du score total)
+    const desiredNotes = ['Vanille', 'Rose', 'Oud', 'Ambre', 'Bergamote', 'Jasmin', 'Santal', 'Patchouli'];
+    let notesScore = 0;
+    perfume.notes.forEach(note => {
+      if (desiredNotes.some(desiredNote => note.toLowerCase().includes(desiredNote.toLowerCase()))) {
+        notesScore += 0.3;
+      }
+    });
+    score += notesScore;
+    matchDetails.notesMatch = notesScore;
+    
+    // Bonus pour la diversité des notes (éviter les parfums trop simples)
+    if (perfume.notes.length >= 4) {
+      score += 0.5;
+    }
+    
+    // Bonus pour les parfums avec des descriptions engageantes
+    if (perfume.description && perfume.description.length > 100) {
+      score += 0.2;
+    }
+    
+    return { 
+      ...perfume, 
+      score: Math.round(score * 100) / 100,
+      matchDetails,
+      matchPercentage: Math.min(Math.round((score / 10) * 100), 100)
+    };
   });
   
-  // Trier par score et retourner les 3 meilleurs
-  return scoredPerfumes
-    .sort((a, b) => b.score - a.score)
-    .slice(0, 3);
+  // Trier par score et ajouter une diversité dans les recommandations
+  const sortedPerfumes = scoredPerfumes.sort((a, b) => b.score - a.score);
+  
+  // Sélectionner les 5 meilleurs en évitant trop de parfums de la même catégorie
+  const recommendations = [];
+  const usedCategories = new Set();
+  
+  for (const perfume of sortedPerfumes) {
+    if (recommendations.length >= 5) break;
+    
+    // Toujours ajouter le premier (meilleur score)
+    if (recommendations.length === 0) {
+      recommendations.push(perfume);
+      usedCategories.add(perfume.category);
+      continue;
+    }
+    
+    // Pour les autres, favoriser la diversité des catégories
+    if (!usedCategories.has(perfume.category) || recommendations.length >= 3) {
+      recommendations.push(perfume);
+      usedCategories.add(perfume.category);
+    }
+  }
+  
+  // Si on n'a pas assez de recommandations, compléter avec les meilleurs scores
+  while (recommendations.length < 3 && recommendations.length < sortedPerfumes.length) {
+    const nextBest = sortedPerfumes.find(p => !recommendations.includes(p));
+    if (nextBest) {
+      recommendations.push(nextBest);
+    } else {
+      break;
+    }
+  }
+  
+  return recommendations.slice(0, 3);
 };
