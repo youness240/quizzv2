@@ -118,7 +118,7 @@ def test_cors_configuration():
             "Access-Control-Request-Method": "GET",
             "Access-Control-Request-Headers": "Content-Type"
         }
-        response = requests.options(f"{API_BASE_URL}/", headers=headers)
+        response = requests.options(f"{API_BASE_URL}/", headers=headers, timeout=REQUEST_TIMEOUT)
         print(f"Status Code: {response.status_code}")
         print(f"Access-Control-Allow-Origin: {response.headers.get('Access-Control-Allow-Origin')}")
         
