@@ -19,7 +19,7 @@ def test_root_endpoint():
     """Test the root endpoint GET /api/"""
     print("\n=== Testing Root Endpoint ===")
     try:
-        response = requests.get(f"{API_BASE_URL}/")
+        response = requests.get(f"{API_BASE_URL}/", timeout=REQUEST_TIMEOUT)
         print(f"Status Code: {response.status_code}")
         print(f"Response: {response.json()}")
         
