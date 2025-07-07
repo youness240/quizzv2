@@ -136,6 +136,15 @@ def run_all_tests():
     """Run all tests and return overall result"""
     print(f"Testing backend API at: {API_BASE_URL}")
     
+    # First check if the backend is accessible
+    try:
+        response = requests.get(f"{API_BASE_URL}/", timeout=5)
+        print(f"Backend is accessible: {response.status_code}")
+    except requests.exceptions.RequestException as e:
+        print(f"❌ Backend is not accessible: {str(e)}")
+        print("Please check if the backend service is running and the URL is correct.")
+        return False
+    
     test_results = {
         "Root Endpoint": test_root_endpoint(),
         "Create Status Check": test_create_status_check(),
