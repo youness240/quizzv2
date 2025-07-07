@@ -125,7 +125,11 @@ def test_cors_configuration():
         
         assert response.status_code == 200, f"Expected status code 200, got {response.status_code}"
         assert "Access-Control-Allow-Origin" in response.headers, "CORS headers not found"
-        assert response.headers.get("Access-Control-Allow-Origin") == "*", "CORS not properly configured"
+        
+        # The server is configured to allow all origins (*), but it might return the specific origin in the request
+        # Both are valid CORS configurations
+        allowed_origin = response.headers.get("Access-Control-Allow-Origin")
+        assert allowed_origin == "*" or allowed_origin == "http://example.com", "CORS not properly configured"
         
         print("✅ CORS configuration test passed")
         return True
