@@ -12,6 +12,9 @@ load_dotenv('/app/frontend/.env')
 BACKEND_URL = os.environ.get('REACT_APP_BACKEND_URL')
 API_BASE_URL = f"{BACKEND_URL}/api"
 
+# Set a timeout for all requests
+REQUEST_TIMEOUT = 10  # seconds
+
 def test_root_endpoint():
     """Test the root endpoint GET /api/"""
     print("\n=== Testing Root Endpoint ===")
