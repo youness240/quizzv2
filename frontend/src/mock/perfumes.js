@@ -178,6 +178,96 @@ export const perfumes = [
     notes: ["Bergamote", "Fève Tonka", "Cèdre", "Ambre Gris", "Ylang-Ylang", "Ambrette"],
     personality: ["élégant", "italien", "raffiné", "féminin"],
     mood: ["raffiné", "élégant", "romantique"]
+  },
+  {
+    id: 21,
+    name: "GREEN MALACHITE",
+    category: "Frais",
+    description: "L'éclat vert de la malachite dans cette composition fraîche où la bergamote danse avec l'ylang-ylang et le santal.",
+    notes: ["Bergamote", "Petit-grain", "Jasmin Sambac", "Ylang-Ylang", "Vanille"],
+    personality: ["frais", "vert", "minéral", "énergique"],
+    mood: ["rafraîchissant", "énergique", "naturel"]
+  },
+  {
+    id: 22,
+    name: "GREY NIGHT",
+    category: "Boisé",
+    description: "Les mystères de la nuit grise où l'ambre rencontre le cèdre dans une étreinte nocturne sophistiquée.",
+    notes: ["Coriandre", "Ambre", "Petit-Grain", "Cèdre", "Bois de Santal"],
+    personality: ["nocturne", "sophistiqué", "mystérieux", "boisé"],
+    mood: ["mystérieux", "sophistiqué", "contemplatif"]
+  },
+  {
+    id: 23,
+    name: "IMAGINE",
+    category: "Floral",
+    description: "Laissez libre cours à votre imagination dans ce rêve floral où la bergamote rencontre l'ambroxan.",
+    notes: ["Bergamote", "Gingembre", "Néroli", "Ambroxan"],
+    personality: ["imaginatif", "créatif", "rêveur", "inspirant"],
+    mood: ["créatif", "inspiré", "rêveur"]
+  },
+  {
+    id: 24,
+    name: "INDIAN",
+    category: "Oriental",
+    description: "L'âme épicée de l'Inde dans cette composition envoûtante aux parfums de patchouli et bois de santal.",
+    notes: ["Rose", "Clous", "Patchouli", "Bois de Santal", "Vanille"],
+    personality: ["épicé", "oriental", "spirituel", "exotique"],
+    mood: ["mystérieux", "spirituel", "exotique"]
+  },
+  {
+    id: 25,
+    name: "INDOMPTABLE",
+    category: "Boisé",
+    description: "L'esprit indomptable capturé dans ce mélange puissant de vétiver, musc et notes boisées rebelles.",
+    notes: ["Vétiver", "Ambre", "Cardamome", "Vétiver", "Musc", "Bois"],
+    personality: ["indomptable", "rebelle", "puissant", "libre"],
+    mood: ["rebelle", "puissant", "libre"]
+  },
+  {
+    id: 26,
+    name: "KING OF THE POP",
+    category: "Frais",
+    description: "L'énergie du roi de la pop dans cette composition dynamique aux notes de pop corn et vanille festives.",
+    notes: ["Pop Corn", "Caramel", "Vanille", "Musc"],
+    personality: ["festif", "énergique", "pop", "amusant"],
+    mood: ["festif", "énergique", "joyeux"]
+  },
+  {
+    id: 27,
+    name: "LA NUIT",
+    category: "Oriental",
+    description: "La passion de la nuit parisienne dans ce mélange sensuel de pêche, jasmin et bois de santal.",
+    notes: ["Pêche", "Jasmin", "Vanille", "Bois de Santal"],
+    personality: ["sensuel", "nocturne", "parisien", "passionné"],
+    mood: ["sensuel", "romantique", "nocturne"]
+  },
+  {
+    id: 28,
+    name: "LIBRE",
+    category: "Floral",
+    description: "La liberté incarnée dans ce bouquet moderne où la mandarine rencontre la lavande et l'ambre gris.",
+    notes: ["Mandarine", "Orange", "Petite Gris", "Ambergris"],
+    personality: ["libre", "moderne", "indépendant", "lumineux"],
+    mood: ["libre", "confiant", "indépendant"]
+  },
+  {
+    id: 29,
+    name: "VINTAGE",
+    category: "Classique",
+    description: "L'élégance d'antan revisitée dans cette composition intemporelle aux accents de rose et tubéreuse.",
+    notes: ["Rose", "Bergamote", "Tubéreuse", "Fleur d'Oranger", "Patchouli"],
+    personality: ["vintage", "élégant", "intemporel", "classique"],
+    mood: ["nostalgique", "élégant", "raffiné"]
+  },
+  {
+    id: 30,
+    name: "LOST",
+    category: "Mystérieux",
+    description: "Perdu dans les méandres de cette composition énigmatique où la griotte rencontre l'amande et la cerise noire.",
+    notes: ["Griotte", "Prune", "Rose de Turquie", "Cerise Noire", "Cherry Liqueur", "Amande"],
+    personality: ["mystérieux", "perdu", "énigmatique", "fruité"],
+    mood: ["mystérieux", "introspectif", "fruité"]
   }
 ];
 
