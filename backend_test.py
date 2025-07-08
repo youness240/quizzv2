@@ -381,6 +381,11 @@ def run_all_tests():
         "Create Status Check": test_create_status_check(),
         "Get Status Checks": test_get_status_checks(),
         "MongoDB Connection": test_mongodb_connection(),
+        "Analyze Perfumes Endpoint": test_analyze_perfumes_endpoint(),
+        "Analyze Quiz Endpoint": test_analyze_quiz_endpoint(),
+        "Input Validation": test_input_validation_perfumes(),
+        "Error Handling": test_error_handling(),
+        "MongoDB Storage of Olfactory Profiles": test_mongodb_storage(),
         "CORS Configuration": test_cors_configuration()
     }
     
