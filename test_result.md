@@ -138,15 +138,18 @@ backend:
 frontend:
   - task: "New navigation flow with choice page"
     implemented: true
-    working: false
+    working: true
     file: "frontend/src/App.js, frontend/src/components/ChoicePage.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: false
         agent: "main"
         comment: "Created new navigation flow: Home -> Choice (Quiz OR Perfume Input) -> Portrait -> Results. Added ChoicePage component with elegant UI for choosing between quiz and perfume input methods."
+      - working: true
+        agent: "testing"
+        comment: "Tested the navigation flow from Home to Choice page. Both options (Quiz and Perfume Input) work correctly. The UI is elegant and responsive as expected."
 
   - task: "Perfume input page with AI analysis"
     implemented: true
