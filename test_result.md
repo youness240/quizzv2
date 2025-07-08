@@ -227,6 +227,8 @@ test_plan:
     - "New navigation flow with choice page"
     - "Perfume input page with AI analysis"
     - "Enhanced quiz with AI analysis"
+    - "Improved olfactory portrait display"
+    - "Updated results page with all notes displayed"
   stuck_tasks: []
   test_all: true
   test_priority: "high_first"
