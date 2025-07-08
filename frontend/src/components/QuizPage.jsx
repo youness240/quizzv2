@@ -33,6 +33,7 @@ const QuizPage = ({ onComplete }) => {
       setError('');
       
       try {
+        console.log('Sending quiz data:', { answers: newAnswers });
         const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/analyze-quiz`, {
           method: 'POST',
           headers: {
@@ -43,15 +44,21 @@ const QuizPage = ({ onComplete }) => {
           })
         });
 
+        console.log('Response status:', response.status);
+        console.log('Response headers:', response.headers);
+
         if (!response.ok) {
-          throw new Error('Erreur lors de l\'analyse');
+          const errorText = await response.text();
+          console.error('Error response:', errorText);
+          throw new Error(`Erreur lors de l'analyse: ${response.status} ${errorText}`);
         }
 
         const profile = await response.json();
+        console.log('Profile received:', profile);
         onComplete(profile);
       } catch (err) {
+        console.error('Quiz analysis error:', err);
         setError('Une erreur est survenue lors de l\'analyse. Veuillez réessayer.');
-        console.error(err);
       } finally {
         setIsLoading(false);
       }
