@@ -94,12 +94,12 @@ const QuizPage = ({ onComplete }) => {
                 {question.question}
               </h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4">
                 {question.options.map((option, index) => (
                   <div key={option.value}>
                     <Button
                       variant={selectedOption === option.value ? "default" : "outline"}
-                      className={`w-full p-6 text-left justify-start h-auto font-serif text-lg transition-all duration-300 ${
+                      className={`w-full p-4 sm:p-6 text-left justify-start h-auto font-serif text-base sm:text-lg transition-all duration-300 whitespace-normal leading-relaxed ${
                         selectedOption === option.value
                           ? 'bg-gradient-to-r from-amber-600 to-rose-600 text-white border-amber-300 shadow-lg'
                           : 'bg-white/60 text-stone-700 border-amber-200 hover:bg-amber-50 hover:border-amber-300'
@@ -107,7 +107,9 @@ const QuizPage = ({ onComplete }) => {
                       onClick={() => handleOptionSelect(option.value)}
                       disabled={isLoading}
                     >
-                      {option.label}
+                      <span className="block break-words hyphens-auto">
+                        {option.label}
+                      </span>
                     </Button>
                   </div>
                 ))}
