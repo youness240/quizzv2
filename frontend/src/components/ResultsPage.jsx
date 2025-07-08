@@ -301,9 +301,9 @@ const FinalRecommendations = ({ recommendations, onRestart }) => {
               </p>
               <div className="space-y-3">
                 <div>
-                  <h4 className="font-serif text-lg text-stone-800 mb-2">Notes Principales</h4>
+                  <h4 className="font-serif text-lg text-stone-800 mb-2">Notes Olfactives</h4>
                   <div className="flex flex-wrap gap-2">
-                    {perfume.notes.slice(0, 3).map((note, noteIndex) => (
+                    {perfume.notes.map((note, noteIndex) => (
                       <Badge 
                         key={noteIndex} 
                         variant="secondary"
