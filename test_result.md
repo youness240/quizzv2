@@ -153,15 +153,18 @@ frontend:
 
   - task: "Perfume input page with AI analysis"
     implemented: true
-    working: false
+    working: true
     file: "frontend/src/components/PerfumeInputPage.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: false
         agent: "main"
         comment: "Created PerfumeInputPage allowing users to input 3 perfumes (minimum 2 required). Integrates with /api/analyze-perfumes endpoint. Includes loading states, error handling, and elegant form design."
+      - working: true
+        agent: "testing"
+        comment: "Tested the PerfumeInputPage with inputs 'Chanel No. 5', 'Dior Sauvage', and 'Tom Ford Black Orchid'. The form validation works correctly, requiring at least 2 perfumes. The loading state is displayed during API call. Successfully navigates to the Olfactory Portrait page after analysis."
 
   - task: "Olfactory portrait display page"
     implemented: true
