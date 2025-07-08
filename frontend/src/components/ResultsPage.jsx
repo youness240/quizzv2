@@ -61,9 +61,9 @@ const ResultsPage = ({ profile, onRestart }) => {
                   
                   <div className="space-y-4">
                     <div>
-                      <h4 className="font-serif text-lg text-stone-800 mb-2">Notes Principales</h4>
+                      <h4 className="font-serif text-lg text-stone-800 mb-2">Notes Olfactives</h4>
                       <div className="flex flex-wrap gap-2">
-                        {perfume.notes.slice(0, 4).map((note, noteIndex) => (
+                        {perfume.notes.map((note, noteIndex) => (
                           <Badge 
                             key={noteIndex} 
                             variant="secondary"
@@ -72,14 +72,6 @@ const ResultsPage = ({ profile, onRestart }) => {
                             {note}
                           </Badge>
                         ))}
-                        {perfume.notes.length > 4 && (
-                          <Badge 
-                            variant="secondary"
-                            className="bg-stone-50 text-stone-600 border-stone-200 text-sm"
-                          >
-                            +{perfume.notes.length - 4} autres
-                          </Badge>
-                        )}
                       </div>
                     </div>
                     
