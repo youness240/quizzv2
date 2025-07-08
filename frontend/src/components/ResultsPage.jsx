@@ -104,31 +104,40 @@ const ResultsPage = ({ profile, onRestart }) => {
           ))}
         </div>
 
-        {/* Note sur l'évaluation */}
-        <div className="text-center mb-8">
-          <div className="bg-gradient-to-r from-amber-50 to-rose-50 backdrop-blur-sm rounded-xl p-6 border border-amber-200 shadow-lg max-w-3xl mx-auto">
-            <h3 className="text-2xl font-serif text-stone-800 mb-4">
-              Prêt(e) à Tester Vos Sélections ?
-            </h3>
-            <p className="text-stone-600 mb-4">
-              Visitez notre showroom pour découvrir ces fragrances en personne et affinez vos préférences grâce à notre système d'évaluation personnalisé.
-            </p>
-            <div className="flex items-center justify-center space-x-4 text-sm text-stone-600">
-              <div className="flex items-center">
-                <span className="w-2 h-2 bg-amber-400 rounded-full mr-2"></span>
-                Test en direct
-              </div>
-              <div className="flex items-center">
-                <span className="w-2 h-2 bg-rose-400 rounded-full mr-2"></span>
-                Évaluation intuitive
-              </div>
-              <div className="flex items-center">
-                <span className="w-2 h-2 bg-stone-400 rounded-full mr-2"></span>
-                Correspondance affinée
-              </div>
+        {/* Système d'évaluation */}
+        {!showEvaluation ? (
+          <div className="text-center mb-8">
+            <div className="bg-gradient-to-r from-amber-50 to-rose-50 backdrop-blur-sm rounded-xl p-6 border border-amber-200 shadow-lg max-w-3xl mx-auto">
+              <h3 className="text-2xl font-serif text-stone-800 mb-4">
+                Prêt(e) à Tester Vos Sélections ?
+              </h3>
+              <p className="text-stone-600 mb-4">
+                Testez la sélection sur mesure faite pour vous et évaluez-les en cliquant sur les différentes propositions.
+              </p>
+              <Button 
+                onClick={() => setShowEvaluation(true)}
+                className="bg-gradient-to-r from-amber-600 to-rose-600 hover:from-amber-700 hover:to-rose-700 text-white px-8 py-3 font-serif text-lg"
+              >
+                Commencer l'Évaluation
+              </Button>
             </div>
           </div>
-        </div>
+        ) : (
+          <EvaluationSection 
+            perfumes={recommendations} 
+            evaluations={evaluations}
+            setEvaluations={setEvaluations}
+            setFinalRecommendations={setFinalRecommendations}
+          />
+        )}
+
+        {/* Résultats finaux */}
+        {finalRecommendations.length > 0 && (
+          <FinalRecommendations 
+            recommendations={finalRecommendations} 
+            onRestart={onRestart}
+          />
+        )}
 
         {/* Appel à l'action */}
         <div className="text-center">
