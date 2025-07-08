@@ -163,11 +163,12 @@ def test_analyze_perfumes_endpoint():
         return False
 
 def test_analyze_quiz_endpoint():
-    """Test the POST /api/analyze-quiz endpoint with sample quiz answers"""
-    print("\n=== Testing Analyze Quiz Endpoint ===")
+    """Test the POST /api/analyze-quiz endpoint with sample quiz answers including new social perception questions"""
+    print("\n=== Testing Analyze Quiz Endpoint with All 10 Questions ===")
     try:
         # Sample quiz answers based on the actual quiz structure in server.py
         # Using the correct questionId format (string) and values that match the quiz_mapping
+        # Now including questions 9 and 10 for social perception
         payload = {
             "answers": [
                 {"questionId": "1", "value": "evening"},
@@ -177,7 +178,9 @@ def test_analyze_quiz_endpoint():
                 {"questionId": "5", "value": "silk"},
                 {"questionId": "6", "value": "vanilla"},
                 {"questionId": "7", "value": "romantic"},
-                {"questionId": "8", "value": "water"}
+                {"questionId": "8", "value": "water"},
+                {"questionId": "9", "value": "confident_noticeable"},  # New social perception question
+                {"questionId": "10", "value": "intriguing_mysterious"}  # New social perception question
             ]
         }
         
@@ -218,7 +221,22 @@ def test_analyze_quiz_endpoint():
         assert isinstance(result["portrait_text"], str), "portrait_text should be a string"
         assert len(result["portrait_text"]) > 0, "portrait_text should not be empty"
         
-        print("✅ Analyze quiz endpoint test passed")
+        # Check for enhanced traits based on social perception questions
+        # Since we selected "confident_noticeable" and "intriguing_mysterious", we expect:
+        # - Intensity should be "intense" or at least "modere"
+        # - Sillage should be "puissant" or at least "modere"
+        # - Personality traits should include some confident/mysterious traits
+        
+        # Check intensity and sillage influenced by social perception
+        assert result["intensity"] in ["modere", "intense"], f"Expected intensity to be modere or intense based on social preferences, got {result['intensity']}"
+        assert result["sillage"] in ["modere", "puissant"], f"Expected sillage to be modere or puissant based on social preferences, got {result['sillage']}"
+        
+        # Check for personality traits that reflect the social perception choices
+        social_related_traits = ["confiant", "audacieux", "charismatique", "mystérieux", "intriguant", "fascinant"]
+        has_social_trait = any(trait in social_related_traits for trait in result["personality_traits"])
+        assert has_social_trait, f"Expected at least one social-related trait from {social_related_traits}, got {result['personality_traits']}"
+        
+        print("✅ Analyze quiz endpoint test passed with enhanced social perception questions")
         return True
     except Exception as e:
         print(f"❌ Analyze quiz endpoint test failed: {str(e)}")
