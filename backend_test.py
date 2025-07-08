@@ -166,18 +166,22 @@ def test_analyze_quiz_endpoint():
     """Test the POST /api/analyze-quiz endpoint with sample quiz answers"""
     print("\n=== Testing Analyze Quiz Endpoint ===")
     try:
-        # Sample quiz answers
+        # Sample quiz answers based on the actual quiz structure in server.py
+        # Using the correct questionId format (string) and values that match the quiz_mapping
         payload = {
             "answers": [
-                {"questionId": "q1", "value": "Nature and outdoors"},
-                {"questionId": "q2", "value": "Evening"},
-                {"questionId": "q3", "value": "Elegant and sophisticated"},
-                {"questionId": "q4", "value": "Warm and cozy"},
-                {"questionId": "q5", "value": "Citrus"}
+                {"questionId": "1", "value": "evening"},
+                {"questionId": "2", "value": "floral"},
+                {"questionId": "3", "value": "parisian"},
+                {"questionId": "4", "value": "classical"},
+                {"questionId": "5", "value": "silk"},
+                {"questionId": "6", "value": "vanilla"},
+                {"questionId": "7", "value": "romantic"},
+                {"questionId": "8", "value": "water"}
             ]
         }
         
-        print(f"Sending request to {API_BASE_URL}/analyze-quiz with payload: {payload}")
+        print(f"Sending request to {API_BASE_URL}/analyze-quiz with payload: {json.dumps(payload, indent=2)}")
         response = requests.post(f"{API_BASE_URL}/analyze-quiz", json=payload, timeout=REQUEST_TIMEOUT)
         print(f"Status Code: {response.status_code}")
         
