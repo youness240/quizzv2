@@ -134,6 +134,21 @@ backend:
       - working: true
         agent: "testing"
         comment: "Verified that the API endpoints are correctly implemented with the expected Pydantic models. The endpoints accept the correct input formats and return the expected OlfactoryProfile structure. MongoDB storage is working correctly, with each request creating a new entry with a unique ID and user_session. Input validation is also working as expected."
+        
+  - task: "Enhanced quiz logic with social perception questions"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "main"
+        comment: "Enhanced the quiz logic system with 2 new questions (9 & 10) about social perception and how users want to be perceived in a room. Added weighted scoring for social perception questions, improved personality and family matching with social impact preferences, and enhanced olfactory profiles to include richer personality traits and emotional tones."
+      - working: true
+        agent: "testing"
+        comment: "Tested the enhanced quiz logic with the new social perception questions. The API correctly processes all 10 questions including the new social perception questions (9 & 10). The weighted scoring for social perception questions is working correctly, with questions 9 & 10 having double weight. The olfactory profiles now include richer personality traits and emotional tones based on social perception preferences. The intensity and sillage are properly determined based on social preferences. The portrait_text is more personalized based on social impact. All tests passed successfully."
 
 frontend:
   - task: "New navigation flow with choice page"
