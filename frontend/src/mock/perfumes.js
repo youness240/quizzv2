@@ -1,1 +1,1 @@
-export { perfumes, quizQuestions, calculatePerfumeMatch } from './perfumes_complete.js';
+export { perfumes, quizQuestions, calculatePerfumeMatch, calculateAIPerfumeMatch } from './perfumes_complete.js';
