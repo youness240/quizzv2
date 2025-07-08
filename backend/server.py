@@ -36,6 +36,32 @@ class StatusCheck(BaseModel):
 class StatusCheckCreate(BaseModel):
     client_name: str
 
+# Fragrance Models
+class PerfumeInput(BaseModel):
+    perfume_name: str
+
+class PerfumeAnalysisRequest(BaseModel):
+    perfumes: List[str]
+
+class OlfactoryProfile(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    user_session: str
+    profile_type: str  # "quiz" or "perfume_input"
+    olfactory_families: List[str]
+    intensity: str  # "leger", "modere", "intense"
+    sillage: str  # "intime", "modere", "puissant"  
+    emotional_tone: List[str]
+    personality_traits: List[str]
+    portrait_text: str
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+class QuizAnswer(BaseModel):
+    questionId: str
+    value: str
+
+class QuizRequest(BaseModel):
+    answers: List[QuizAnswer]
+
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
 async def root():
