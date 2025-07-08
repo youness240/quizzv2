@@ -31,6 +31,8 @@ function App() {
 
   const handleContinueToRecommendations = () => {
     setCurrentPage('results');
+    // Scroll vers le haut de la page
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleRestart = () => {
