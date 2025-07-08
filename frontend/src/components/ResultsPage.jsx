@@ -46,11 +46,6 @@ const ResultsPage = ({ profile, onRestart }) => {
                        index === 3 ? 'Correspondance Intrigante' :
                        'Correspondance Découverte'}
                     </Badge>
-                    {perfume.matchPercentage && (
-                      <div className="text-sm text-stone-600">
-                        {perfume.matchPercentage}% de compatibilité
-                      </div>
-                    )}
                   </div>
                   <CardTitle className="text-2xl md:text-3xl font-serif text-stone-800 mb-2">
                     {perfume.name}
