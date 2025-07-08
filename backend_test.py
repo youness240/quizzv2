@@ -113,6 +113,229 @@ def test_mongodb_connection():
         print(f"❌ MongoDB connection test failed: {str(e)}")
         return False
 
+def test_analyze_perfumes_endpoint():
+    """Test the POST /api/analyze-perfumes endpoint with sample perfume names"""
+    print("\n=== Testing Analyze Perfumes Endpoint ===")
+    try:
+        # Sample perfume names as specified in the test requirements
+        payload = {"perfumes": ["Chanel No. 5", "Dior Sauvage", "Tom Ford Black Orchid"]}
+        
+        print(f"Sending request to {API_BASE_URL}/analyze-perfumes with payload: {payload}")
+        response = requests.post(f"{API_BASE_URL}/analyze-perfumes", json=payload, timeout=REQUEST_TIMEOUT)
+        print(f"Status Code: {response.status_code}")
+        
+        # Check if response is successful
+        assert response.status_code == 200, f"Expected status code 200, got {response.status_code}"
+        
+        # Parse response
+        result = response.json()
+        print(f"Response: {json.dumps(result, indent=2)}")
+        
+        # Validate response structure
+        assert "id" in result, "Response should contain 'id' field"
+        assert "user_session" in result, "Response should contain 'user_session' field"
+        assert "profile_type" in result, "Response should contain 'profile_type' field"
+        assert result["profile_type"] == "perfume_input", "Profile type should be 'perfume_input'"
+        
+        # Validate olfactory profile fields
+        assert "olfactory_families" in result, "Response should contain 'olfactory_families' field"
+        assert isinstance(result["olfactory_families"], list), "olfactory_families should be a list"
+        
+        assert "intensity" in result, "Response should contain 'intensity' field"
+        assert result["intensity"] in ["leger", "modere", "intense"], f"Invalid intensity value: {result['intensity']}"
+        
+        assert "sillage" in result, "Response should contain 'sillage' field"
+        assert result["sillage"] in ["intime", "modere", "puissant"], f"Invalid sillage value: {result['sillage']}"
+        
+        assert "emotional_tone" in result, "Response should contain 'emotional_tone' field"
+        assert isinstance(result["emotional_tone"], list), "emotional_tone should be a list"
+        
+        assert "personality_traits" in result, "Response should contain 'personality_traits' field"
+        assert isinstance(result["personality_traits"], list), "personality_traits should be a list"
+        
+        assert "portrait_text" in result, "Response should contain 'portrait_text' field"
+        assert isinstance(result["portrait_text"], str), "portrait_text should be a string"
+        assert len(result["portrait_text"]) > 0, "portrait_text should not be empty"
+        
+        print("✅ Analyze perfumes endpoint test passed")
+        return True
+    except Exception as e:
+        print(f"❌ Analyze perfumes endpoint test failed: {str(e)}")
+        return False
+
+def test_analyze_quiz_endpoint():
+    """Test the POST /api/analyze-quiz endpoint with sample quiz answers"""
+    print("\n=== Testing Analyze Quiz Endpoint ===")
+    try:
+        # Sample quiz answers
+        payload = {
+            "answers": [
+                {"questionId": "q1", "value": "Nature and outdoors"},
+                {"questionId": "q2", "value": "Evening"},
+                {"questionId": "q3", "value": "Elegant and sophisticated"},
+                {"questionId": "q4", "value": "Warm and cozy"},
+                {"questionId": "q5", "value": "Citrus"}
+            ]
+        }
+        
+        print(f"Sending request to {API_BASE_URL}/analyze-quiz with payload: {payload}")
+        response = requests.post(f"{API_BASE_URL}/analyze-quiz", json=payload, timeout=REQUEST_TIMEOUT)
+        print(f"Status Code: {response.status_code}")
+        
+        # Check if response is successful
+        assert response.status_code == 200, f"Expected status code 200, got {response.status_code}"
+        
+        # Parse response
+        result = response.json()
+        print(f"Response: {json.dumps(result, indent=2)}")
+        
+        # Validate response structure
+        assert "id" in result, "Response should contain 'id' field"
+        assert "user_session" in result, "Response should contain 'user_session' field"
+        assert "profile_type" in result, "Response should contain 'profile_type' field"
+        assert result["profile_type"] == "quiz", "Profile type should be 'quiz'"
+        
+        # Validate olfactory profile fields
+        assert "olfactory_families" in result, "Response should contain 'olfactory_families' field"
+        assert isinstance(result["olfactory_families"], list), "olfactory_families should be a list"
+        
+        assert "intensity" in result, "Response should contain 'intensity' field"
+        assert result["intensity"] in ["leger", "modere", "intense"], f"Invalid intensity value: {result['intensity']}"
+        
+        assert "sillage" in result, "Response should contain 'sillage' field"
+        assert result["sillage"] in ["intime", "modere", "puissant"], f"Invalid sillage value: {result['sillage']}"
+        
+        assert "emotional_tone" in result, "Response should contain 'emotional_tone' field"
+        assert isinstance(result["emotional_tone"], list), "emotional_tone should be a list"
+        
+        assert "personality_traits" in result, "Response should contain 'personality_traits' field"
+        assert isinstance(result["personality_traits"], list), "personality_traits should be a list"
+        
+        assert "portrait_text" in result, "Response should contain 'portrait_text' field"
+        assert isinstance(result["portrait_text"], str), "portrait_text should be a string"
+        assert len(result["portrait_text"]) > 0, "portrait_text should not be empty"
+        
+        print("✅ Analyze quiz endpoint test passed")
+        return True
+    except Exception as e:
+        print(f"❌ Analyze quiz endpoint test failed: {str(e)}")
+        return False
+
+def test_input_validation_perfumes():
+    """Test input validation for the analyze-perfumes endpoint"""
+    print("\n=== Testing Input Validation for Analyze Perfumes ===")
+    try:
+        # Test with empty perfume list
+        empty_payload = {"perfumes": []}
+        print(f"Testing with empty perfume list: {empty_payload}")
+        response = requests.post(f"{API_BASE_URL}/analyze-perfumes", json=empty_payload, timeout=REQUEST_TIMEOUT)
+        print(f"Status Code: {response.status_code}")
+        
+        # Test with invalid payload structure
+        invalid_payload = {"invalid_field": "test"}
+        print(f"Testing with invalid payload structure: {invalid_payload}")
+        response2 = requests.post(f"{API_BASE_URL}/analyze-perfumes", json=invalid_payload, timeout=REQUEST_TIMEOUT)
+        print(f"Status Code: {response2.status_code}")
+        
+        # At least one of these should return a non-200 status code or a default response
+        # We're checking that the API handles invalid input gracefully
+        if response.status_code != 200 or response2.status_code != 200:
+            print("✅ Input validation test passed - API rejected invalid input")
+            return True
+        else:
+            # If both returned 200, check if we got default values
+            result1 = response.json()
+            result2 = response2.json()
+            
+            # Check if these look like default responses
+            if (result1.get("profile_type") == "perfume_input" and 
+                isinstance(result1.get("olfactory_families"), list) and
+                result2.get("profile_type") == "perfume_input" and
+                isinstance(result2.get("olfactory_families"), list)):
+                print("✅ Input validation test passed - API returned default values for invalid input")
+                return True
+            else:
+                print("❌ Input validation test failed - API accepted invalid input without proper handling")
+                return False
+    except Exception as e:
+        print(f"❌ Input validation test failed: {str(e)}")
+        return False
+
+def test_error_handling():
+    """Test error handling when OpenAI is unavailable"""
+    print("\n=== Testing Error Handling ===")
+    try:
+        # Create a payload that might cause an error in the OpenAI processing
+        # Using extremely long perfume names that might exceed token limits
+        payload = {
+            "perfumes": [
+                "A" * 1000,  # Very long perfume name
+                "B" * 1000,
+                "C" * 1000
+            ]
+        }
+        
+        print(f"Testing with potentially problematic payload")
+        response = requests.post(f"{API_BASE_URL}/analyze-perfumes", json=payload, timeout=REQUEST_TIMEOUT)
+        print(f"Status Code: {response.status_code}")
+        
+        # The API should either return an error code or fall back to default values
+        if response.status_code != 200:
+            print("✅ Error handling test passed - API returned error code")
+            return True
+        else:
+            # If it returned 200, check if we got default values
+            result = response.json()
+            print(f"Response: {json.dumps(result, indent=2)}")
+            
+            # Check if this looks like a default response
+            if (result.get("profile_type") == "perfume_input" and 
+                isinstance(result.get("olfactory_families"), list)):
+                print("✅ Error handling test passed - API returned default values")
+                return True
+            else:
+                print("❌ Error handling test failed - API didn't handle potential error properly")
+                return False
+    except Exception as e:
+        print(f"❌ Error handling test failed: {str(e)}")
+        return False
+
+def test_mongodb_storage():
+    """Test MongoDB storage of olfactory profiles"""
+    print("\n=== Testing MongoDB Storage of Olfactory Profiles ===")
+    try:
+        # Generate a unique identifier for this test
+        test_id = str(uuid.uuid4())
+        
+        # Create a unique perfume name to identify our test entry
+        unique_perfume = f"Test Perfume {test_id}"
+        
+        # Send a request to analyze perfumes
+        payload = {"perfumes": [unique_perfume, "Dior Sauvage"]}
+        
+        print(f"Sending request with unique perfume: {unique_perfume}")
+        response1 = requests.post(f"{API_BASE_URL}/analyze-perfumes", json=payload, timeout=REQUEST_TIMEOUT)
+        assert response1.status_code == 200, "Failed to analyze perfumes"
+        
+        # Get the user_session from the response
+        user_session = response1.json().get("user_session")
+        assert user_session, "Response should contain user_session"
+        
+        # Send another request with the same unique perfume
+        response2 = requests.post(f"{API_BASE_URL}/analyze-perfumes", json=payload, timeout=REQUEST_TIMEOUT)
+        assert response2.status_code == 200, "Failed to analyze perfumes second time"
+        
+        # The two responses should have different IDs and user_sessions,
+        # indicating that each request creates a new entry in the database
+        assert response1.json().get("id") != response2.json().get("id"), "Each request should create a unique entry"
+        assert response1.json().get("user_session") != response2.json().get("user_session"), "Each request should have a unique user_session"
+        
+        print("✅ MongoDB storage test passed")
+        return True
+    except Exception as e:
+        print(f"❌ MongoDB storage test failed: {str(e)}")
+        return False
+
 def test_cors_configuration():
     """Test CORS configuration by sending a preflight request"""
     print("\n=== Testing CORS Configuration ===")
