@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Quiz Questions 9 & 10</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .button-option {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            text-align: left;
+            justify-content: flex-start;
+            height: auto;
+            font-family: serif;
+            font-size: 1rem;
+            transition: all 0.3s;
+            white-space: normal;
+            line-height: 1.6;
+            background: rgba(255, 255, 255, 0.6);
+            color: #44403c;
+            border: 1px solid #fbbf24;
+            border-radius: 0.375rem;
+            word-break: break-words;
+            hyphens: auto;
+        }
+        
+        .button-option:hover {
+            background: #fef3c7;
+            border-color: #f59e0b;
+        }
+        
+        .button-option.selected {
+            background: linear-gradient(to right, #d97706, #e11d48);
+            color: white;
+            border-color: #fbbf24;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (max-width: 640px) {
+            .button-option {
+                padding: 1rem;
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-stone-50 via-amber-50 to-rose-50 min-h-screen">
+    <div class="py-8 px-4">
+        <div class="max-w-4xl mx-auto">
+            <!-- Progress Bar -->
+            <div class="mb-8">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-sm text-stone-600 font-medium">Question 9 sur 10</span>
+                    <span class="text-sm text-stone-600 font-medium">90%</span>
+                </div>
+                <div class="w-full bg-stone-200 rounded-full h-2">
+                    <div class="bg-gradient-to-r from-amber-600 to-rose-600 h-2 rounded-full" style="width: 90%"></div>
+                </div>
+            </div>
+
+            <!-- Question 9 -->
+            <div class="bg-white/80 backdrop-blur-sm border-amber-200 shadow-xl rounded-lg mb-8">
+                <div class="p-8">
+                    <h2 class="text-3xl md:text-4xl font-serif text-stone-800 mb-8 leading-relaxed">
+                        Comment préférez-vous que votre parfum soit perçu par les autres ?
+                    </h2>
+
+                    <div class="grid grid-cols-1 gap-4">
+                        <button class="button-option">
+                            <span class="block break-words hyphens-auto">
+                                Discret et élégant - Seules les personnes proches le remarquent
+                            </span>
+                        </button>
+                        <button class="button-option">
+                            <span class="block break-words hyphens-auto">
+                                Subtil mais mémorable - Laisse une impression durable
+                            </span>
+                        </button>
+                        <button class="button-option">
+                            <span class="block break-words hyphens-auto">
+                                Confiant et remarquable - Affirme votre présence
+                            </span>
+                        </button>
+                        <button class="button-option">
+                            <span class="block break-words hyphens-auto">
+                                Magnétique et captivant - Attire l'attention naturellement
+                            </span>
+                        </button>
+                        <button class="button-option">
+                            <span class="block break-words hyphens-auto">
+                                Adaptable selon les situations - Modulable
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="bg-white/80 backdrop-blur-sm border-amber-200 shadow-xl rounded-lg mb-8">
+                <div class="p-8">
+                    <h2 class="text-3xl md:text-4xl font-serif text-stone-800 mb-8 leading-relaxed">
+                        Quand vous entrez dans une pièce, comment souhaitez-vous être perçu ?
+                    </h2>
+
+                    <div class="grid grid-cols-1 gap-4">
+                        <button class="button-option">
+                            <span class="block break-words hyphens-auto">
+                                Invisible mais raffiné - Votre classe transparaît subtilement
+                            </span>
+                        </button>
+                        <button class="button-option">
+                            <span class="block break-words hyphens-auto">
+                                Accessible et chaleureux - Les gens se sentent à l'aise
+                            </span>
+                        </button>
+                        <button class="button-option">
+                            <span class="block break-words hyphens-auto">
+                                Intriguant et mystérieux - Suscite la curiosité
+                            </span>
+                        </button>
+                        <button class="button-option">
+                            <span class="block break-words hyphens-auto">
+                                Imposant et impressionnant - Commande le respect
+                            </span>
+                        </button>
+                        <button class="button-option">
+                            <span class="button-option">
+                            <span class="block break-words hyphens-auto">
+                                Sans effort et naturel - Authentique et sincère
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
