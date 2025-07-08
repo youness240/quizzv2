@@ -68,79 +68,96 @@ class QuizAnswer(BaseModel):
 class QuizRequest(BaseModel):
     answers: List[QuizAnswer]
 
-# Fonction d'analyse logique du quiz (sans IA)
+# Fonction d'analyse logique du quiz (sans IA) - VERSION AMÉLIORÉE
 def analyze_quiz_logic(answers):
-    """Analyse les réponses du quiz et génère un profil olfactif basé sur la logique"""
+    """Analyse les réponses du quiz et génère un profil olfactif basé sur la logique AMÉLIORÉE"""
     
     # Compteurs pour les différents traits
     personality_scores = {}
     mood_scores = {}
     category_preferences = {}
     
-    # Questions et leurs options avec leurs associations
+    # Variables pour l'intensité et le sillage
+    intensity_votes = []
+    sillage_votes = []
+    social_impact_preference = "balanced"
+    
+    # Questions et leurs options avec leurs associations - ENRICHIES
     quiz_mapping = {
         "1": {  # Moment de la journée
-            "dawn": {"personality": ["frais", "optimiste", "énergique"], "families": ["frais"], "intensity": "leger"},
-            "morning": {"personality": ["énergique", "confiant", "moderne"], "families": ["frais", "agrumes"], "intensity": "modere"},
-            "afternoon": {"personality": ["chaleureux", "lumineux", "joyeux"], "families": ["floral", "fruité"], "intensity": "modere"},
-            "evening": {"personality": ["sophistiqué", "mystérieux", "élégant"], "families": ["oriental", "boisé"], "intensity": "intense"},
-            "night": {"personality": ["mystique", "sensuel", "profond"], "families": ["oriental", "amber"], "intensity": "intense"}
+            "dawn": {"personality": ["frais", "optimiste", "énergique"], "families": ["frais", "agrumes"], "intensity": "leger", "sillage": "intime"},
+            "morning": {"personality": ["énergique", "confiant", "moderne"], "families": ["frais", "agrumes"], "intensity": "modere", "sillage": "modere"},
+            "afternoon": {"personality": ["chaleureux", "lumineux", "joyeux"], "families": ["floral", "fruité"], "intensity": "modere", "sillage": "modere"},
+            "evening": {"personality": ["sophistiqué", "mystérieux", "élégant"], "families": ["oriental", "boisé"], "intensity": "intense", "sillage": "puissant"},
+            "night": {"personality": ["mystique", "sensuel", "profond"], "families": ["oriental", "amber"], "intensity": "intense", "sillage": "puissant"}
         },
         "2": {  # Saveur
-            "sweet": {"personality": ["gourmand", "doux", "réconfortant"], "families": ["gourmand"], "sillage": "intime"},
-            "spicy": {"personality": ["épicé", "audacieux", "chaleureux"], "families": ["épicé", "oriental"], "sillage": "puissant"},
-            "fresh": {"personality": ["frais", "énergique", "moderne"], "families": ["frais", "aquatique"], "sillage": "modere"},
-            "floral": {"personality": ["floral", "romantique", "délicat"], "families": ["floral"], "sillage": "modere"},
-            "woody": {"personality": ["boisé", "sophistiqué", "ancré"], "families": ["boisé"], "sillage": "puissant"}
+            "sweet": {"personality": ["gourmand", "doux", "réconfortant"], "families": ["gourmand"], "sillage": "intime", "intensity": "modere"},
+            "spicy": {"personality": ["épicé", "audacieux", "chaleureux"], "families": ["épicé", "oriental"], "sillage": "puissant", "intensity": "intense"},
+            "fresh": {"personality": ["frais", "énergique", "moderne"], "families": ["frais", "aquatique"], "sillage": "modere", "intensity": "leger"},
+            "floral": {"personality": ["floral", "romantique", "délicat"], "families": ["floral"], "sillage": "modere", "intensity": "modere"},
+            "woody": {"personality": ["boisé", "sophistiqué", "ancré"], "families": ["boisé"], "sillage": "puissant", "intensity": "intense"}
         },
         "3": {  # Destination
-            "tropical": {"personality": ["tropical", "libre", "exotique"], "families": ["aquatique", "frais"]},
-            "oriental": {"personality": ["oriental", "mystique", "luxueux"], "families": ["oriental", "épicé"]},
-            "parisian": {"personality": ["parisien", "romantique", "élégant"], "families": ["floral", "chypre"]},
-            "nature": {"personality": ["naturel", "paisible", "boisé"], "families": ["boisé", "fougère"]},
-            "modern": {"personality": ["moderne", "énergique", "urbain"], "families": ["frais", "musk"]}
+            "tropical": {"personality": ["tropical", "libre", "exotique"], "families": ["aquatique", "frais"], "intensity": "modere"},
+            "oriental": {"personality": ["oriental", "mystique", "luxueux"], "families": ["oriental", "épicé"], "intensity": "intense"},
+            "parisian": {"personality": ["parisien", "romantique", "élégant"], "families": ["floral", "chypre"], "intensity": "modere"},
+            "nature": {"personality": ["naturel", "paisible", "boisé"], "families": ["boisé", "fougère"], "intensity": "modere"},
+            "modern": {"personality": ["moderne", "énergique", "urbain"], "families": ["frais", "musk"], "intensity": "leger"}
         },
         "4": {  # Musique
-            "classical": {"personality": ["raffiné", "sophistiqué", "élégant"], "families": ["floral", "chypre"]},
-            "jazz": {"personality": ["sophistiqué", "mystérieux", "sensuel"], "families": ["oriental", "amber"]},
-            "pop": {"personality": ["joyeux", "moderne", "énergique"], "families": ["frais", "fruité"]},
-            "world": {"personality": ["exotique", "aventurier", "oriental"], "families": ["oriental", "épicé"]},
-            "electronic": {"personality": ["moderne", "mystique", "audacieux"], "families": ["musk", "aquatique"]}
+            "classical": {"personality": ["raffiné", "sophistiqué", "élégant"], "families": ["floral", "chypre"], "intensity": "modere"},
+            "jazz": {"personality": ["sophistiqué", "mystérieux", "sensuel"], "families": ["oriental", "amber"], "intensity": "intense"},
+            "pop": {"personality": ["joyeux", "moderne", "énergique"], "families": ["frais", "fruité"], "intensity": "leger"},
+            "world": {"personality": ["exotique", "aventurier", "oriental"], "families": ["oriental", "épicé"], "intensity": "intense"},
+            "electronic": {"personality": ["moderne", "mystique", "audacieux"], "families": ["musk", "aquatique"], "intensity": "modere"}
         },
         "5": {  # Texture
-            "velvet": {"personality": ["luxueux", "sensuel", "doux"], "families": ["oriental", "gourmand"]},
-            "silk": {"personality": ["élégant", "sophistiqué", "précieux"], "families": ["floral", "musk"]},
-            "cashmere": {"personality": ["doux", "réconfortant", "chaleureux"], "families": ["gourmand", "boisé"]},
-            "leather": {"personality": ["audacieux", "fort", "mystérieux"], "families": ["boisé", "chypre"]},
-            "cotton": {"personality": ["naturel", "simple", "frais"], "families": ["frais", "fougère"]}
+            "velvet": {"personality": ["luxueux", "sensuel", "doux"], "families": ["oriental", "gourmand"], "intensity": "intense"},
+            "silk": {"personality": ["élégant", "sophistiqué", "précieux"], "families": ["floral", "musk"], "intensity": "modere"},
+            "cashmere": {"personality": ["doux", "réconfortant", "chaleureux"], "families": ["gourmand", "boisé"], "intensity": "modere"},
+            "leather": {"personality": ["audacieux", "fort", "mystérieux"], "families": ["boisé", "chypre"], "intensity": "intense"},
+            "cotton": {"personality": ["naturel", "simple", "frais"], "families": ["frais", "fougère"], "intensity": "leger"}
         },
         "6": {  # Parfum gourmand
-            "vanilla": {"personality": ["gourmand", "doux", "réconfortant"], "families": ["gourmand"]},
-            "chocolate": {"personality": ["gourmand", "mystérieux", "sensuel"], "families": ["gourmand", "oriental"]},
-            "caramel": {"personality": ["gourmand", "chaleureux", "séduisant"], "families": ["gourmand"]},
-            "coffee": {"personality": ["énergique", "moderne", "audacieux"], "families": ["boisé", "épicé"]},
-            "honey": {"personality": ["gourmand", "naturel", "chaleureux"], "families": ["gourmand", "floral"]}
+            "vanilla": {"personality": ["gourmand", "doux", "réconfortant"], "families": ["gourmand"], "intensity": "modere"},
+            "chocolate": {"personality": ["gourmand", "mystérieux", "sensuel"], "families": ["gourmand", "oriental"], "intensity": "intense"},
+            "caramel": {"personality": ["gourmand", "chaleureux", "séduisant"], "families": ["gourmand"], "intensity": "modere"},
+            "coffee": {"personality": ["énergique", "moderne", "audacieux"], "families": ["boisé", "épicé"], "intensity": "intense"},
+            "honey": {"personality": ["gourmand", "naturel", "chaleureux"], "families": ["gourmand", "floral"], "intensity": "modere"}
         },
         "7": {  # Ambiance
-            "romantic": {"personality": ["romantique", "sensuel", "élégant"], "families": ["floral", "oriental"]},
-            "adventurous": {"personality": ["aventurier", "libre", "audacieux"], "families": ["frais", "aquatique"]},
-            "sophisticated": {"personality": ["sophistiqué", "raffiné", "élégant"], "families": ["chypre", "boisé"]},
-            "peaceful": {"personality": ["paisible", "naturel", "harmonieux"], "families": ["fougère", "boisé"]},
-            "energetic": {"personality": ["énergique", "joyeux", "social"], "families": ["frais", "agrumes"]}
+            "romantic": {"personality": ["romantique", "sensuel", "élégant"], "families": ["floral", "oriental"], "intensity": "modere"},
+            "adventurous": {"personality": ["aventurier", "libre", "audacieux"], "families": ["frais", "aquatique"], "intensity": "intense"},
+            "sophisticated": {"personality": ["sophistiqué", "raffiné", "élégant"], "families": ["chypre", "boisé"], "intensity": "intense"},
+            "peaceful": {"personality": ["paisible", "naturel", "harmonieux"], "families": ["fougère", "boisé"], "intensity": "leger"},
+            "energetic": {"personality": ["énergique", "joyeux", "social"], "families": ["frais", "agrumes"], "intensity": "modere"}
         },
         "8": {  # Élément naturel
-            "fire": {"personality": ["passionné", "énergique", "audacieux"], "families": ["épicé", "oriental"]},
-            "water": {"personality": ["fluide", "paisible", "mystérieux"], "families": ["aquatique", "frais"]},
-            "earth": {"personality": ["authentique", "stable", "naturel"], "families": ["boisé", "fougère"]},
-            "air": {"personality": ["libre", "léger", "frais"], "families": ["frais", "musk"]},
-            "wood": {"personality": ["sage", "profond", "boisé"], "families": ["boisé", "chypre"]}
+            "fire": {"personality": ["passionné", "énergique", "audacieux"], "families": ["épicé", "oriental"], "intensity": "intense"},
+            "water": {"personality": ["fluide", "paisible", "mystérieux"], "families": ["aquatique", "frais"], "intensity": "leger"},
+            "earth": {"personality": ["authentique", "stable", "naturel"], "families": ["boisé", "fougère"], "intensity": "modere"},
+            "air": {"personality": ["libre", "léger", "frais"], "families": ["frais", "musk"], "intensity": "leger"},
+            "wood": {"personality": ["sage", "profond", "boisé"], "families": ["boisé", "chypre"], "intensity": "intense"}
+        },
+        "9": {  # Perception sociale - NOUVELLE QUESTION
+            "discreet_elegant": {"personality": ["discret", "élégant", "raffiné"], "families": ["musk", "floral"], "intensity": "leger", "sillage": "intime", "social_impact": "subtle"},
+            "subtle_memorable": {"personality": ["subtil", "mémorable", "mystérieux"], "families": ["chypre", "oriental"], "intensity": "modere", "sillage": "modere", "social_impact": "memorable"},
+            "confident_noticeable": {"personality": ["confiant", "audacieux", "charismatique"], "families": ["oriental", "boisé"], "intensity": "intense", "sillage": "puissant", "social_impact": "confident"},
+            "magnetic_captivating": {"personality": ["magnétique", "captivant", "séduisant"], "families": ["oriental", "gourmand"], "intensity": "intense", "sillage": "puissant", "social_impact": "captivating"},
+            "adaptable_versatile": {"personality": ["adaptable", "versatile", "intelligent"], "families": ["frais", "musk"], "intensity": "modere", "sillage": "modere", "social_impact": "balanced"}
+        },
+        "10": {  # Présence dans une pièce - NOUVELLE QUESTION
+            "invisible_refined": {"personality": ["raffiné", "mystérieux", "sophistiqué"], "families": ["musk", "chypre"], "intensity": "leger", "sillage": "intime", "social_impact": "subtle"},
+            "approachable_warm": {"personality": ["chaleureux", "accessible", "bienveillant"], "families": ["gourmand", "floral"], "intensity": "modere", "sillage": "modere", "social_impact": "welcoming"},
+            "intriguing_mysterious": {"personality": ["mystérieux", "intriguant", "fascinant"], "families": ["oriental", "amber"], "intensity": "intense", "sillage": "modere", "social_impact": "mysterious"},
+            "commanding_impressive": {"personality": ["imposant", "puissant", "leader"], "families": ["boisé", "épicé"], "intensity": "intense", "sillage": "puissant", "social_impact": "dominant"},
+            "effortless_natural": {"personality": ["naturel", "authentique", "sincère"], "families": ["fougère", "frais"], "intensity": "modere", "sillage": "modere", "social_impact": "authentic"}
         }
     }
     
-    # Analyser chaque réponse
+    # Analyser chaque réponse avec pondération améliorée
     family_counts = {}
-    intensities = []
-    sillages = []
     
     for answer in answers:
         question_id = str(answer.questionId)
@@ -149,67 +166,102 @@ def analyze_quiz_logic(answers):
         if question_id in quiz_mapping and value in quiz_mapping[question_id]:
             mapping = quiz_mapping[question_id][value]
             
-            # Compter les traits de personnalité
+            # Pondération spéciale pour les questions sociales (9 et 10)
+            social_weight = 2.0 if question_id in ["9", "10"] else 1.0
+            taste_weight = 1.5 if question_id in ["2", "6"] else 1.0
+            
+            # Compter les traits de personnalité avec pondération
             for trait in mapping.get("personality", []):
-                personality_scores[trait] = personality_scores.get(trait, 0) + 1
+                weight = social_weight * taste_weight
+                personality_scores[trait] = personality_scores.get(trait, 0) + weight
             
-            # Compter les familles olfactives
+            # Compter les familles olfactives avec pondération
             for family in mapping.get("families", []):
-                family_counts[family] = family_counts.get(family, 0) + 1
+                weight = social_weight * taste_weight
+                family_counts[family] = family_counts.get(family, 0) + weight
             
-            # Collecter intensité et sillage
+            # Collecter intensité et sillage avec pondération sociale
             if "intensity" in mapping:
-                intensities.append(mapping["intensity"])
+                weight = 2 if question_id in ["9", "10"] else 1
+                intensity_votes.extend([mapping["intensity"]] * weight)
             if "sillage" in mapping:
-                sillages.append(mapping["sillage"])
+                weight = 2 if question_id in ["9", "10"] else 1
+                sillage_votes.extend([mapping["sillage"]] * weight)
+            
+            # Capture de l'impact social
+            if "social_impact" in mapping:
+                social_impact_preference = mapping["social_impact"]
     
-    # Déterminer les familles olfactives principales (top 3)
-    top_families = sorted(family_counts.items(), key=lambda x: x[1], reverse=True)[:3]
+    # Déterminer les familles olfactives principales (top 3-4)
+    top_families = sorted(family_counts.items(), key=lambda x: x[1], reverse=True)[:4]
     olfactory_families = [family for family, count in top_families] if top_families else ["floral", "frais"]
     
-    # Déterminer l'intensité (majorité)
-    intensity = max(set(intensities), key=intensities.count) if intensities else "modere"
+    # Déterminer l'intensité (majorité pondérée)
+    intensity = max(set(intensity_votes), key=intensity_votes.count) if intensity_votes else "modere"
     
-    # Déterminer le sillage (majorité)
-    sillage = max(set(sillages), key=sillages.count) if sillages else "modere"
+    # Déterminer le sillage (majorité pondérée)
+    sillage = max(set(sillage_votes), key=sillage_votes.count) if sillage_votes else "modere"
     
-    # Traits de personnalité (top 3)
-    top_personality = sorted(personality_scores.items(), key=lambda x: x[1], reverse=True)[:3]
+    # Traits de personnalité (top 4 pour plus de richesse)
+    top_personality = sorted(personality_scores.items(), key=lambda x: x[1], reverse=True)[:4]
     personality_traits = [trait for trait, count in top_personality] if top_personality else ["sophistiqué", "moderne"]
     
-    # Ton émotionnel basé sur les réponses dominantes
+    # Ton émotionnel basé sur les réponses dominantes - ENRICHI
     emotional_mapping = {
-        "énergique": ["dynamique", "vivant"],
-        "sophistiqué": ["raffiné", "élégant"],
-        "mystérieux": ["envoûtant", "intriguant"],
-        "romantique": ["tendre", "passionné"],
-        "naturel": ["authentique", "paisible"],
-        "audacieux": ["confiant", "moderne"]
+        "énergique": ["dynamique", "vivant", "pétillant"],
+        "sophistiqué": ["raffiné", "élégant", "cultivé"],
+        "mystérieux": ["envoûtant", "intriguant", "fascinant"],
+        "romantique": ["tendre", "passionné", "charmant"],
+        "naturel": ["authentique", "paisible", "harmonieux"],
+        "audacieux": ["confiant", "moderne", "charismatique"],
+        "discret": ["subtil", "raffiné", "distingué"],
+        "chaleureux": ["réconfortant", "bienveillant", "accueillant"],
+        "élégant": ["sophistiqué", "gracieux", "distingué"],
+        "confiant": ["assuré", "charismatique", "séduisant"],
+        "captivant": ["magnétique", "séduisant", "fascinant"],
+        "imposant": ["puissant", "impressionnant", "dominant"],
+        "raffiné": ["distingué", "précieux", "sublime"]
     }
     
     emotional_tone = []
     for trait in personality_traits:
         if trait in emotional_mapping:
-            emotional_tone.extend(emotional_mapping[trait])
+            emotional_tone.extend(emotional_mapping[trait][:2])  # Max 2 par trait
     
-    # Limiter à 3 tons émotionnels uniques
-    emotional_tone = list(set(emotional_tone))[:3]
+    # Limiter à 3-4 tons émotionnels uniques
+    emotional_tone = list(set(emotional_tone))[:4]
     if not emotional_tone:
         emotional_tone = ["harmonieux", "équilibré", "authentique"]
     
-    # Créer un portrait personnalisé basé sur les traits dominants
-    portrait_templates = {
-        ("sophistiqué", "élégant"): "Votre essence révèle une personnalité raffinée qui apprécie l'art de vivre et les compositions d'exception.",
-        ("énergique", "moderne"): "Votre personnalité dynamique s'exprime à travers des fragrances vivantes qui reflètent votre énergie créative.",
-        ("mystérieux", "sensuel"): "Votre nature profonde et magnétique trouve son expression dans des parfums envoûtants aux facettes complexes.",
-        ("romantique", "floral"): "Votre âme romantique vibre au rythme des compositions florales qui célèbrent la beauté et la tendresse.",
-        ("audacieux", "libre"): "Votre esprit libre et aventurier se révèle dans des fragrances audacieuses qui défient les conventions.",
-        ("naturel", "paisible"): "Votre connexion profonde avec la nature transparaît dans votre attirance pour les compositions authentiques et apaisantes."
+    # Créer un portrait personnalisé basé sur les traits dominants et l'impact social
+    social_portraits = {
+        "subtle": "Votre essence révèle une élégance discrète qui charme par sa sophistication naturelle. Vous privilégiez la finesse à l'ostentation.",
+        "memorable": "Votre personnalité laisse une empreinte durable, subtile mais inoubliable. Vous maîtrisez l'art de la présence mémorable.",
+        "confident": "Votre aura rayonne d'une confiance naturelle qui inspire et attire. Vous assumez votre présence avec assurance.",
+        "captivating": "Votre magnétisme naturel exerce une fascination authentique sur votre entourage. Vous êtes irrésistiblement attirant.",
+        "welcoming": "Votre chaleur humaine crée une atmosphère accueillante et réconfortante. Vous êtes un havre de paix pour les autres.",
+        "mysterious": "Votre mystère intrigue et fascine, créant une aura d'élégance énigmatique qui captive l'attention.",
+        "dominant": "Votre présence commande naturellement le respect et l'admiration. Vous êtes un leader né avec une aura imposante.",
+        "authentic": "Votre authenticité transparaît dans chaque geste, créant une connexion sincère et profonde avec votre entourage.",
+        "balanced": "Votre équilibre parfait entre subtilité et présence révèle une personnalité harmonieuse et adaptable."
     }
     
-    # Trouver le template le plus adapté
-    portrait_text = "Votre profil olfactif unique révèle une personnalité complexe et raffinée, en harmonie avec des fragrances d'exception."
-    for traits, template in portrait_templates.items():
+    # Portraits combinés pour plus de richesse
+    combined_portraits = {
+        ("sophistiqué", "élégant"): "Votre raffinement naturel s'exprime à travers une élégance intemporelle qui transcende les modes et les époques.",
+        ("mystérieux", "captivant"): "Votre aura mystérieuse exerce une fascination profonde, mêlant intrigue et magnétisme dans une harmonie parfaite.",
+        ("confiant", "charismatique"): "Votre charisme naturel rayonne d'une confiance authentique qui inspire et attire naturellement les autres.",
+        ("discret", "raffiné"): "Votre distinction se révèle dans la subtilité de votre présence, alliant discrétion et raffinement suprême.",
+        ("chaleureux", "bienveillant"): "Votre générosité d'âme crée une atmosphère chaleureuse et accueillante qui réconforte et rassure.",
+        ("audacieux", "moderne"): "Votre esprit avant-gardiste s'exprime par une audace assumée qui bouscule les conventions avec élégance.",
+        ("naturel", "authentique"): "Votre sincérité transparaît dans chaque interaction, créant des liens profonds et authentiques avec votre entourage."
+    }
+    
+    # Choisir le portrait le plus adapté
+    portrait_text = social_portraits.get(social_impact_preference, "Votre profil olfactif révèle une personnalité complexe et raffinée.")
+    
+    # Enrichir avec un portrait combiné si possible
+    for traits, template in combined_portraits.items():
         if any(trait in personality_traits for trait in traits):
             portrait_text = template
             break
