@@ -1057,3 +1057,136 @@ export const calculatePerfumeMatch = (answers) => {
   
   return recommendations.slice(0, 3);
 };
+
+// Nouvelle fonction pour les recommandations basées sur le profil olfactif IA
+export const calculateAIPerfumeMatch = (olfactoryProfile) => {
+  // Évaluer chaque parfum en fonction du profil olfactif
+  const scoredPerfumes = perfumes.map(perfume => {
+    let score = 0;
+    let matchDetails = {
+      familyMatch: 0,
+      personalityMatch: 0,
+      emotionalMatch: 0,
+      intensityMatch: 0
+    };
+    
+    // Score basé sur les familles olfactives (40% du score total)
+    const familyMatches = perfume.notes.filter(note => {
+      return olfactoryProfile.olfactory_families.some(family => {
+        // Mapping des familles olfactives avec les notes
+        const familyKeywords = {
+          'floral': ['rose', 'jasmin', 'pivoine', 'fleur', 'lys', 'tubéreuse', 'ylang', 'iris'],
+          'boisé': ['santal', 'cèdre', 'oud', 'bois', 'teck', 'palissandre', 'gaiac'],
+          'oriental': ['ambre', 'oud', 'épices', 'cannelle', 'cardamome', 'safran', 'encens'],
+          'frais': ['bergamote', 'citron', 'pamplemousse', 'menthe', 'eucalyptus', 'marine'],
+          'gourmand': ['vanille', 'chocolat', 'caramel', 'miel', 'amande', 'cacao', 'café'],
+          'musk': ['musc', 'blanc', 'poudré', 'animal'],
+          'épicé': ['poivre', 'cannelle', 'muscade', 'gingembre', 'cardamome', 'clous'],
+          'amber': ['ambre', 'labdanum', 'benjoin', 'vanille', 'résine'],
+          'aquatique': ['marine', 'ozone', 'sel', 'algue', 'eau'],
+          'chypre': ['mousse', 'patchouli', 'bergamote', 'chêne'],
+          'fougère': ['lavande', 'coumarine', 'géranium', 'mousse']
+        };
+        
+        const keywords = familyKeywords[family] || [family];
+        return keywords.some(keyword => 
+          note.toLowerCase().includes(keyword.toLowerCase())
+        );
+      });
+    }).length;
+    
+    const familyScore = (familyMatches / Math.max(perfume.notes.length, 1)) * 4;
+    score += familyScore;
+    matchDetails.familyMatch = familyScore;
+    
+    // Score basé sur les traits de personnalité (30% du score total)
+    const personalityMatches = perfume.personality.filter(trait => 
+      olfactoryProfile.personality_traits.some(profileTrait => 
+        trait.toLowerCase().includes(profileTrait.toLowerCase()) ||
+        profileTrait.toLowerCase().includes(trait.toLowerCase())
+      )
+    ).length;
+    
+    const personalityScore = (personalityMatches / Math.max(perfume.personality.length, 1)) * 3;
+    score += personalityScore;
+    matchDetails.personalityMatch = personalityScore;
+    
+    // Score basé sur le ton émotionnel (20% du score total)
+    const emotionalMatches = perfume.mood.filter(mood => 
+      olfactoryProfile.emotional_tone.some(tone => 
+        mood.toLowerCase().includes(tone.toLowerCase()) ||
+        tone.toLowerCase().includes(mood.toLowerCase())
+      )
+    ).length;
+    
+    const emotionalScore = (emotionalMatches / Math.max(perfume.mood.length, 1)) * 2;
+    score += emotionalScore;
+    matchDetails.emotionalMatch = emotionalScore;
+    
+    // Score basé sur l'intensité et le sillage (10% du score total)
+    let intensityScore = 0;
+    if (olfactoryProfile.intensity === 'leger' && perfume.personality.includes('délicat')) {
+      intensityScore += 0.5;
+    } else if (olfactoryProfile.intensity === 'modere' && !perfume.personality.includes('puissant')) {
+      intensityScore += 0.7;
+    } else if (olfactoryProfile.intensity === 'intense' && perfume.personality.includes('puissant')) {
+      intensityScore += 1;
+    }
+    
+    if (olfactoryProfile.sillage === 'intime' && perfume.personality.includes('délicat')) {
+      intensityScore += 0.3;
+    } else if (olfactoryProfile.sillage === 'puissant' && perfume.personality.includes('audacieux')) {
+      intensityScore += 0.5;
+    }
+    
+    score += intensityScore;
+    matchDetails.intensityMatch = intensityScore;
+    
+    // Bonus pour les catégories correspondantes
+    if (olfactoryProfile.olfactory_families.includes(perfume.category.toLowerCase())) {
+      score += 0.5;
+    }
+    
+    return { 
+      ...perfume, 
+      score: Math.round(score * 100) / 100,
+      matchDetails,
+      matchPercentage: Math.min(Math.round((score / 10) * 100), 100)
+    };
+  });
+  
+  // Trier par score et sélectionner les 5 meilleurs avec diversité
+  const sortedPerfumes = scoredPerfumes.sort((a, b) => b.score - a.score);
+  
+  const recommendations = [];
+  const usedCategories = new Set();
+  
+  for (const perfume of sortedPerfumes) {
+    if (recommendations.length >= 5) break;
+    
+    // Toujours ajouter le premier (meilleur score)
+    if (recommendations.length === 0) {
+      recommendations.push(perfume);
+      usedCategories.add(perfume.category);
+      continue;
+    }
+    
+    // Pour les autres, favoriser la diversité des catégories
+    if (!usedCategories.has(perfume.category) || recommendations.length >= 3) {
+      recommendations.push(perfume);
+      usedCategories.add(perfume.category);
+    }
+  }
+  
+  // Compléter avec les meilleurs scores si nécessaire
+  while (recommendations.length < 5 && recommendations.length < sortedPerfumes.length) {
+    const nextBest = sortedPerfumes.find(p => !recommendations.includes(p));
+    if (nextBest) {
+      recommendations.push(nextBest);
+    } else {
+      break;
+    }
+  }
+  
+  return recommendations.slice(0, 5);
+};
