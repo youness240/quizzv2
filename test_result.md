@@ -183,15 +183,21 @@ frontend:
 
   - task: "Enhanced quiz with AI analysis"
     implemented: true
-    working: false
+    working: true
     file: "frontend/src/components/QuizPage.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: false
         agent: "main"
         comment: "Updated QuizPage to integrate with /api/analyze-quiz endpoint. Added loading states and AI analysis on quiz completion. Maintains existing elegant UI design."
+      - working: false
+        agent: "testing"
+        comment: "Found an issue with the QuizPage: when submitting the quiz, it returns a 422 error from the server. The error message 'Une erreur est survenue lors de l'analyse. Veuillez réessayer.' is displayed instead of navigating to the Olfactory Portrait page. The issue is that the questionId is being sent as a number, but the backend expects it as a string."
+      - working: true
+        agent: "testing"
+        comment: "Fixed the issue by converting the questionId to a string using String(quizQuestions[currentQuestion].id). Now the quiz flow works correctly - after completing all 8 questions, the user is successfully navigated to the Olfactory Portrait page and then to the Results page."
 
   - task: "Updated results page for 5 perfume recommendations"
     implemented: true
