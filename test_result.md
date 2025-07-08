@@ -213,6 +213,9 @@ frontend:
       - working: true
         agent: "testing"
         comment: "Fixed the issue by converting the questionId to a string using String(quizQuestions[currentQuestion].id). Now the quiz flow works correctly - after completing all 8 questions, the user is successfully navigated to the Olfactory Portrait page and then to the Results page."
+      - working: true
+        agent: "testing"
+        comment: "Tested the enhanced quiz flow with the new social perception questions. The quiz now correctly shows 10 questions instead of 8, with questions 9 and 10 specifically focused on social perception. Question 9 asks 'Comment préférez-vous que votre parfum soit perçu par les autres ?' and Question 10 asks 'Quand vous entrez dans une pièce, comment souhaitez-vous être perçu ?'. The progress bar correctly shows progress from 1-10. All social perception options are displayed correctly, including discreet/elegant, confident/noticeable, magnetic/captivating, and natural/authentic options. The 'Créer Mon Portrait' button appears on question 10 as expected. After completing the quiz, the user is successfully navigated to the Olfactory Portrait page and then to the Results page, which displays 5 perfume recommendations as required."
 
   - task: "Updated results page for 5 perfume recommendations"
     implemented: true
