@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
@@ -6,6 +6,9 @@ import { calculateAIPerfumeMatch } from '../mock/perfumes';
 
 const ResultsPage = ({ profile, onRestart }) => {
   const recommendations = calculateAIPerfumeMatch(profile);
+  const [showEvaluation, setShowEvaluation] = useState(false);
+  const [evaluations, setEvaluations] = useState({});
+  const [finalRecommendations, setFinalRecommendations] = useState([]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50 to-rose-50 py-8 px-4">
