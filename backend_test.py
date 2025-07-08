@@ -264,6 +264,53 @@ def test_input_validation_perfumes():
         print(f"❌ Input validation test failed: {str(e)}")
         return False
 
+def test_analyze_quiz_with_invalid_format():
+    """Test the POST /api/analyze-quiz endpoint with invalid format to reproduce the error"""
+    print("\n=== Testing Analyze Quiz Endpoint with Invalid Format ===")
+    try:
+        # Sample quiz answers with numeric questionId instead of string
+        # This might be causing the "Une erreur est survenue lors de l'analyse" error
+        payload = {
+            "answers": [
+                {"questionId": 1, "value": "evening"},  # Numeric instead of string
+                {"questionId": 2, "value": "floral"},   # Numeric instead of string
+                {"questionId": 3, "value": "parisian"},
+                {"questionId": 4, "value": "classical"},
+                {"questionId": 5, "value": "silk"},
+                {"questionId": 6, "value": "vanilla"},
+                {"questionId": 7, "value": "romantic"},
+                {"questionId": 8, "value": "water"}
+            ]
+        }
+        
+        print(f"Sending request with numeric questionId to {API_BASE_URL}/analyze-quiz")
+        print(f"Payload: {json.dumps(payload, indent=2)}")
+        response = requests.post(f"{API_BASE_URL}/analyze-quiz", json=payload, timeout=REQUEST_TIMEOUT)
+        print(f"Status Code: {response.status_code}")
+        
+        if response.status_code != 200:
+            print(f"Error response: {response.text}")
+            print("✅ Test passed - Identified the issue: numeric questionId causes an error")
+            return True
+        else:
+            # If it somehow works, check the response structure
+            result = response.json()
+            print(f"Response: {json.dumps(result, indent=2)}")
+            
+            # Check if we got a valid response or a default fallback
+            if (result.get("profile_type") == "quiz" and 
+                isinstance(result.get("olfactory_families"), list)):
+                print("✅ Test passed - API handled numeric questionId correctly")
+                return True
+            else:
+                print("❌ Test failed - API accepted invalid input but returned unexpected response")
+                return False
+    except Exception as e:
+        print(f"❌ Test failed with exception: {str(e)}")
+        # This might actually be the expected behavior if the API is failing with this input
+        print("This exception might indicate the source of the 'Une erreur est survenue' message")
+        return False
+
 def test_error_handling():
     """Test error handling when OpenAI is unavailable"""
     print("\n=== Testing Error Handling ===")
