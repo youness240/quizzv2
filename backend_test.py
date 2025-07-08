@@ -404,7 +404,9 @@ def test_analyze_quiz_with_invalid_format():
                 {"questionId": 5, "value": "silk"},
                 {"questionId": 6, "value": "vanilla"},
                 {"questionId": 7, "value": "romantic"},
-                {"questionId": 8, "value": "water"}
+                {"questionId": 8, "value": "water"},
+                {"questionId": 9, "value": "confident_noticeable"},
+                {"questionId": 10, "value": "intriguing_mysterious"}
             ]
         }
         
