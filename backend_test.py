@@ -558,6 +558,7 @@ def run_all_tests():
         "MongoDB Connection": test_mongodb_connection(),
         "Analyze Perfumes Endpoint": test_analyze_perfumes_endpoint(),
         "Analyze Quiz Endpoint": test_analyze_quiz_endpoint(),
+        "Social Perception Variations": test_social_perception_variations(),
         "Input Validation": test_input_validation_perfumes(),
         "Error Handling": test_error_handling(),
         "MongoDB Storage of Olfactory Profiles": test_mongodb_storage(),
