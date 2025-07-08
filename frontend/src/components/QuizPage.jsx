@@ -33,7 +33,7 @@ const QuizPage = ({ onComplete }) => {
       setError('');
       
       try {
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/analyze-quiz`, {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/analyze-quiz`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
