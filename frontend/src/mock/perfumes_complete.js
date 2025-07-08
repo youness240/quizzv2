@@ -891,6 +891,30 @@ export const quizQuestions = [
       { value: "air", label: "Air - Liberté et légèreté", personality: ["libre", "léger", "frais"], mood: ["libre", "frais", "optimiste"] },
       { value: "wood", label: "Bois - Sagesse et profondeur", personality: ["sage", "profond", "boisé"], mood: ["sophistiqué", "ancré", "mystérieux"] }
     ]
+  },
+  {
+    id: 9,
+    question: "Comment préférez-vous que votre parfum soit perçu par les autres ?",
+    type: "social_perception",
+    options: [
+      { value: "discreet_elegant", label: "Discret et élégant - Seules les personnes proches le remarquent", personality: ["discret", "élégant", "raffiné"], mood: ["sophistiqué", "intime", "mystérieux"], sillage: "intime", intensity: "leger" },
+      { value: "subtle_memorable", label: "Subtil mais mémorable - Laisse une impression durable", personality: ["subtil", "mémorable", "mystérieux"], mood: ["mystérieux", "sophistiqué", "élégant"], sillage: "modere", intensity: "modere" },
+      { value: "confident_noticeable", label: "Confiant et remarquable - Affirme votre présence", personality: ["confiant", "audacieux", "charismatique"], mood: ["confiant", "audacieux", "énergique"], sillage: "puissant", intensity: "intense" },
+      { value: "magnetic_captivating", label: "Magnétique et captivant - Attire l'attention naturellement", personality: ["magnétique", "captivant", "séduisant"], mood: ["séduisant", "mystérieux", "sensuel"], sillage: "puissant", intensity: "intense" },
+      { value: "adaptable_versatile", label: "Adaptable selon les situations - Modulable", personality: ["adaptable", "versatile", "intelligent"], mood: ["harmonieux", "équilibré", "moderne"], sillage: "modere", intensity: "modere" }
+    ]
+  },
+  {
+    id: 10,
+    question: "Quand vous entrez dans une pièce, comment souhaitez-vous être perçu ?",
+    type: "room_presence",
+    options: [
+      { value: "invisible_refined", label: "Invisible mais raffiné - Votre classe transparaît subtilement", personality: ["raffiné", "mystérieux", "sophistiqué"], mood: ["sophistiqué", "mystérieux", "élégant"], sillage: "intime", social_impact: "subtle" },
+      { value: "approachable_warm", label: "Accessible et chaleureux - Les gens se sentent à l'aise", personality: ["chaleureux", "accessible", "bienveillant"], mood: ["chaleureux", "réconfortant", "joyeux"], sillage: "modere", social_impact: "welcoming" },
+      { value: "intriguing_mysterious", label: "Intriguant et mystérieux - Suscite la curiosité", personality: ["mystérieux", "intriguant", "fascinant"], mood: ["mystérieux", "sophistiqué", "sensuel"], sillage: "modere", social_impact: "mysterious" },
+      { value: "commanding_impressive", label: "Imposant et impressionnant - Commande le respect", personality: ["imposant", "puissant", "leader"], mood: ["confiant", "audacieux", "puissant"], sillage: "puissant", social_impact: "dominant" },
+      { value: "effortless_natural", label: "Sans effort et naturel - Authentique et sincère", personality: ["naturel", "authentique", "sincère"], mood: ["naturel", "paisible", "harmonieux"], sillage: "modere", social_impact: "authentic" }
+    ]
   }
 ];
 
