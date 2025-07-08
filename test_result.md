@@ -201,15 +201,18 @@ frontend:
 
   - task: "Updated results page for 5 perfume recommendations"
     implemented: true
-    working: false
+    working: true
     file: "frontend/src/components/ResultsPage.jsx, frontend/src/mock/perfumes_complete.js"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: false
         agent: "main"
         comment: "Enhanced ResultsPage to display 5 perfume recommendations instead of 3. Created calculateAIPerfumeMatch function for AI-based recommendations. Updated UI layout for 5 perfumes with compatibility percentages and elegant grid layout."
+      - working: true
+        agent: "testing"
+        comment: "Tested the ResultsPage after completing both the quiz and perfume input flows. The page correctly displays 5 perfume recommendations with compatibility percentages. The UI layout is elegant and responsive. The 'Nouveau Portrait' button works correctly, navigating back to the Home page."
 
 metadata:
   created_by: "main_agent"
