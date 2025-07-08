@@ -315,59 +315,21 @@ async def analyze_perfumes(request: PerfumeAnalysisRequest):
 
 @api_router.post("/analyze-quiz", response_model=OlfactoryProfile)
 async def analyze_quiz(request: QuizRequest):
-    """Analyse du quiz utilisateur avec IA"""
+    """Analyse du quiz utilisateur SANS IA - utilise la logique de correspondance"""
     try:
-        # Créer une session de chat avec OpenAI
-        session_id = str(uuid.uuid4())
-        chat = LlmChat(
-            api_key=os.environ.get('OPENAI_API_KEY'),
-            session_id=session_id,
-            system_message="""Tu es un expert parfumeur français spécialisé dans l'analyse olfactive. 
-            Tu dois analyser les réponses d'un quiz lifestyle et créer un profil olfactif personnalisé.
-            
-            Réponds UNIQUEMENT en format JSON avec cette structure exacte :
-            {
-                "olfactory_families": ["famille1", "famille2", "famille3"],
-                "intensity": "leger/modere/intense",
-                "sillage": "intime/modere/puissant",
-                "emotional_tone": ["ton1", "ton2", "ton3"],
-                "personality_traits": ["trait1", "trait2", "trait3"],
-                "portrait_text": "Description poétique du profil olfactif en 2-3 phrases élégantes"
-            }
-            
-            Familles olfactives possibles : floral, boisé, oriental, frais, gourmand, musk, épicé, amber, aquatique, chypre, fougère
-            Intensité : leger, modere, intense
-            Sillage : intime, modere, puissant
-            """
-        ).with_model("openai", "gpt-4o")
+        # Convertir les réponses du quiz en format approprié
+        quiz_analysis = analyze_quiz_logic(request.answers)
         
-        # Préparer le message pour l'IA
-        answers_text = []
-        for answer in request.answers:
-            answers_text.append(f"Question {answer.questionId}: {answer.value}")
-        
-        quiz_summary = "\n".join(answers_text)
-        user_message = UserMessage(
-            text=f"Analyse ces réponses de quiz lifestyle et crée un profil olfactif personnalisé :\n{quiz_summary}"
-        )
-        
-        # Envoyer la requête à l'IA
-        response = await chat.send_message(user_message)
-        
-        # Parser la réponse JSON
-        import json
-        ai_analysis = json.loads(response)
-        
-        # Créer le profil olfactif
+        # Créer le profil olfactif basé sur l'analyse logique
         profile = OlfactoryProfile(
-            user_session=session_id,
+            user_session=str(uuid.uuid4()),
             profile_type="quiz",
-            olfactory_families=ai_analysis["olfactory_families"],
-            intensity=ai_analysis["intensity"],
-            sillage=ai_analysis["sillage"],
-            emotional_tone=ai_analysis["emotional_tone"],
-            personality_traits=ai_analysis["personality_traits"],
-            portrait_text=ai_analysis["portrait_text"]
+            olfactory_families=quiz_analysis["olfactory_families"],
+            intensity=quiz_analysis["intensity"],
+            sillage=quiz_analysis["sillage"],
+            emotional_tone=quiz_analysis["emotional_tone"],
+            personality_traits=quiz_analysis["personality_traits"],
+            portrait_text=quiz_analysis["portrait_text"]
         )
         
         # Sauvegarder dans la base de données
