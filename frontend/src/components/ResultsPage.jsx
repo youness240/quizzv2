@@ -10,9 +10,9 @@ const ResultsPage = ({ profile, onRestart }) => {
   const [evaluations, setEvaluations] = useState({});
   const [finalRecommendations, setFinalRecommendations] = useState([]);
 
-  // Scroll vers le haut au montage de la page
+  // Positionner instantanément en haut de la page
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo(0, 0);
   }, []);
 
   return (
