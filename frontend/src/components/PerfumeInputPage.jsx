@@ -26,7 +26,7 @@ const PerfumeInputPage = ({ onComplete }) => {
     setError('');
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/analyze-perfumes`, {
+      const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/analyze-perfumes`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
