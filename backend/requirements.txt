@@ -27,3 +27,4 @@ emergentintegrations
 litellm
 httpx
 aiohttp
+openai
