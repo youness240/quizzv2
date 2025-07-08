@@ -79,6 +79,155 @@ async def get_status_checks():
     status_checks = await db.status_checks.find().to_list(1000)
     return [StatusCheck(**status_check) for status_check in status_checks]
 
+# Fragrance AI Endpoints
+@api_router.post("/analyze-perfumes", response_model=OlfactoryProfile)
+async def analyze_perfumes(request: PerfumeAnalysisRequest):
+    """Analyse des parfums saisis par l'utilisateur avec IA"""
+    try:
+        # Créer une session de chat avec OpenAI
+        session_id = str(uuid.uuid4())
+        chat = LlmChat(
+            api_key=os.environ.get('OPENAI_API_KEY'),
+            session_id=session_id,
+            system_message="""Tu es un expert parfumeur français spécialisé dans l'analyse olfactive. 
+            Tu dois analyser des parfums mentionnés par l'utilisateur et créer un profil olfactif personnalisé.
+            
+            Réponds UNIQUEMENT en format JSON avec cette structure exacte :
+            {
+                "olfactory_families": ["famille1", "famille2", "famille3"],
+                "intensity": "leger/modere/intense",
+                "sillage": "intime/modere/puissant",
+                "emotional_tone": ["ton1", "ton2", "ton3"],
+                "personality_traits": ["trait1", "trait2", "trait3"],
+                "portrait_text": "Description poétique du profil olfactif en 2-3 phrases élégantes"
+            }
+            
+            Familles olfactives possibles : floral, boisé, oriental, frais, gourmand, musk, épicé, amber, aquatique, chypre, fougère
+            Intensité : leger, modere, intense
+            Sillage : intime, modere, puissant
+            """
+        ).with_model("openai", "gpt-4o")
+        
+        # Préparer le message pour l'IA
+        perfume_list = ", ".join(request.perfumes)
+        user_message = UserMessage(
+            text=f"Analyse ces parfums et crée un profil olfactif personnalisé : {perfume_list}"
+        )
+        
+        # Envoyer la requête à l'IA
+        response = await chat.send_message(user_message)
+        
+        # Parser la réponse JSON
+        import json
+        ai_analysis = json.loads(response)
+        
+        # Créer le profil olfactif
+        profile = OlfactoryProfile(
+            user_session=session_id,
+            profile_type="perfume_input",
+            olfactory_families=ai_analysis["olfactory_families"],
+            intensity=ai_analysis["intensity"],
+            sillage=ai_analysis["sillage"],
+            emotional_tone=ai_analysis["emotional_tone"],
+            personality_traits=ai_analysis["personality_traits"],
+            portrait_text=ai_analysis["portrait_text"]
+        )
+        
+        # Sauvegarder dans la base de données
+        await db.olfactory_profiles.insert_one(profile.dict())
+        
+        return profile
+        
+    except Exception as e:
+        logger.error(f"Erreur lors de l'analyse des parfums : {str(e)}")
+        # Retourner un profil par défaut en cas d'erreur
+        return OlfactoryProfile(
+            user_session=str(uuid.uuid4()),
+            profile_type="perfume_input",
+            olfactory_families=["floral", "boisé"],
+            intensity="modere",
+            sillage="modere",
+            emotional_tone=["élégant", "raffiné"],
+            personality_traits=["sophistiqué", "discret"],
+            portrait_text="Votre essence révèle une personnalité raffinée qui apprécie les harmonies subtiles et les compositions équilibrées."
+        )
+
+@api_router.post("/analyze-quiz", response_model=OlfactoryProfile)
+async def analyze_quiz(request: QuizRequest):
+    """Analyse du quiz utilisateur avec IA"""
+    try:
+        # Créer une session de chat avec OpenAI
+        session_id = str(uuid.uuid4())
+        chat = LlmChat(
+            api_key=os.environ.get('OPENAI_API_KEY'),
+            session_id=session_id,
+            system_message="""Tu es un expert parfumeur français spécialisé dans l'analyse olfactive. 
+            Tu dois analyser les réponses d'un quiz lifestyle et créer un profil olfactif personnalisé.
+            
+            Réponds UNIQUEMENT en format JSON avec cette structure exacte :
+            {
+                "olfactory_families": ["famille1", "famille2", "famille3"],
+                "intensity": "leger/modere/intense",
+                "sillage": "intime/modere/puissant",
+                "emotional_tone": ["ton1", "ton2", "ton3"],
+                "personality_traits": ["trait1", "trait2", "trait3"],
+                "portrait_text": "Description poétique du profil olfactif en 2-3 phrases élégantes"
+            }
+            
+            Familles olfactives possibles : floral, boisé, oriental, frais, gourmand, musk, épicé, amber, aquatique, chypre, fougère
+            Intensité : leger, modere, intense
+            Sillage : intime, modere, puissant
+            """
+        ).with_model("openai", "gpt-4o")
+        
+        # Préparer le message pour l'IA
+        answers_text = []
+        for answer in request.answers:
+            answers_text.append(f"Question {answer.questionId}: {answer.value}")
+        
+        quiz_summary = "\n".join(answers_text)
+        user_message = UserMessage(
+            text=f"Analyse ces réponses de quiz lifestyle et crée un profil olfactif personnalisé :\n{quiz_summary}"
+        )
+        
+        # Envoyer la requête à l'IA
+        response = await chat.send_message(user_message)
+        
+        # Parser la réponse JSON
+        import json
+        ai_analysis = json.loads(response)
+        
+        # Créer le profil olfactif
+        profile = OlfactoryProfile(
+            user_session=session_id,
+            profile_type="quiz",
+            olfactory_families=ai_analysis["olfactory_families"],
+            intensity=ai_analysis["intensity"],
+            sillage=ai_analysis["sillage"],
+            emotional_tone=ai_analysis["emotional_tone"],
+            personality_traits=ai_analysis["personality_traits"],
+            portrait_text=ai_analysis["portrait_text"]
+        )
+        
+        # Sauvegarder dans la base de données
+        await db.olfactory_profiles.insert_one(profile.dict())
+        
+        return profile
+        
+    except Exception as e:
+        logger.error(f"Erreur lors de l'analyse du quiz : {str(e)}")
+        # Retourner un profil par défaut en cas d'erreur
+        return OlfactoryProfile(
+            user_session=str(uuid.uuid4()),
+            profile_type="quiz",
+            olfactory_families=["floral", "frais"],
+            intensity="modere",
+            sillage="modere",
+            emotional_tone=["dynamique", "moderne"],
+            personality_traits=["créatif", "optimiste"],
+            portrait_text="Votre personnalité rayonne d'une énergie positive qui se reflète dans vos préférences olfactives équilibrées."
+        )
+
 # Include the router in the main app
 app.include_router(api_router)
 
