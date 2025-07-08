@@ -32,9 +32,20 @@ const QuizPage = ({ onComplete }) => {
       setIsLoading(true);
       setError('');
       
+      // Vérifier que nous avons bien 10 réponses
+      if (newAnswers.length !== 10) {
+        setError(`Erreur: ${newAnswers.length} réponses sur 10 attendues`);
+        setIsLoading(false);
+        return;
+      }
+      
       try {
+        const backendUrl = process.env.REACT_APP_BACKEND_URL;
+        console.log('Backend URL:', backendUrl);
         console.log('Sending quiz data:', { answers: newAnswers });
-        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/analyze-quiz`, {
+        console.log('Number of answers:', newAnswers.length);
+        
+        const response = await fetch(`${backendUrl}/api/analyze-quiz`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -45,7 +56,7 @@ const QuizPage = ({ onComplete }) => {
         });
 
         console.log('Response status:', response.status);
-        console.log('Response headers:', response.headers);
+        console.log('Response ok:', response.ok);
 
         if (!response.ok) {
           const errorText = await response.text();
