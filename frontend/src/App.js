@@ -1,27 +1,41 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
+import ChoicePage from './components/ChoicePage';
 import QuizPage from './components/QuizPage';
+import PerfumeInputPage from './components/PerfumeInputPage';
+import OlfactoryPortraitPage from './components/OlfactoryPortraitPage';
 import ResultsPage from './components/ResultsPage';
 import './App.css';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('home');
-  const [quizAnswers, setQuizAnswers] = useState([]);
+  const [olfactoryProfile, setOlfactoryProfile] = useState(null);
 
-  const handleStartQuiz = () => {
-    setCurrentPage('quiz');
-    setQuizAnswers([]);
+  const handleStartJourney = () => {
+    setCurrentPage('choice');
   };
 
-  const handleQuizComplete = (answers) => {
-    setQuizAnswers(answers);
+  const handleChooseQuiz = () => {
+    setCurrentPage('quiz');
+  };
+
+  const handleChoosePerfumeInput = () => {
+    setCurrentPage('perfume-input');
+  };
+
+  const handleProfileComplete = (profile) => {
+    setOlfactoryProfile(profile);
+    setCurrentPage('portrait');
+  };
+
+  const handleContinueToRecommendations = () => {
     setCurrentPage('results');
   };
 
   const handleRestart = () => {
     setCurrentPage('home');
-    setQuizAnswers([]);
+    setOlfactoryProfile(null);
   };
 
   return (
@@ -31,14 +45,29 @@ function App() {
           <Route path="/" element={
             <>
               {currentPage === 'home' && (
-                <HomePage onStartQuiz={handleStartQuiz} />
+                <HomePage onStartJourney={handleStartJourney} />
+              )}
+              {currentPage === 'choice' && (
+                <ChoicePage 
+                  onChooseQuiz={handleChooseQuiz}
+                  onChoosePerfumeInput={handleChoosePerfumeInput}
+                />
               )}
               {currentPage === 'quiz' && (
-                <QuizPage onComplete={handleQuizComplete} />
+                <QuizPage onComplete={handleProfileComplete} />
               )}
-              {currentPage === 'results' && (
+              {currentPage === 'perfume-input' && (
+                <PerfumeInputPage onComplete={handleProfileComplete} />
+              )}
+              {currentPage === 'portrait' && olfactoryProfile && (
+                <OlfactoryPortraitPage 
+                  profile={olfactoryProfile}
+                  onContinue={handleContinueToRecommendations}
+                />
+              )}
+              {currentPage === 'results' && olfactoryProfile && (
                 <ResultsPage 
-                  answers={quizAnswers} 
+                  profile={olfactoryProfile}
                   onRestart={handleRestart} 
                 />
               )}
