@@ -539,6 +539,70 @@ def test_cors_configuration():
         print(f"❌ CORS configuration test failed: {str(e)}")
         return False
 
+def test_analyze_quiz_with_sample_data():
+    """Test the POST /api/analyze-quiz endpoint with the sample data provided in the review request"""
+    print("\n=== Testing Analyze Quiz Endpoint with Sample Data ===")
+    try:
+        # Sample quiz answers from the review request
+        payload = {
+            "answers": [
+                {"questionId": "1", "value": "morning"},
+                {"questionId": "2", "value": "sweet"},
+                {"questionId": "3", "value": "tropical"},
+                {"questionId": "4", "value": "jazz"},
+                {"questionId": "5", "value": "velvet"},
+                {"questionId": "6", "value": "vanilla"},
+                {"questionId": "7", "value": "romantic"},
+                {"questionId": "8", "value": "fire"},
+                {"questionId": "9", "value": "subtle_memorable"},
+                {"questionId": "10", "value": "approachable_warm"}
+            ]
+        }
+        
+        print(f"Sending request to {API_BASE_URL}/analyze-quiz with sample data")
+        print(f"Payload: {json.dumps(payload, indent=2)}")
+        response = requests.post(f"{API_BASE_URL}/analyze-quiz", json=payload, timeout=REQUEST_TIMEOUT)
+        print(f"Status Code: {response.status_code}")
+        
+        # Check if response is successful
+        assert response.status_code == 200, f"Expected status code 200, got {response.status_code}"
+        
+        # Parse response
+        result = response.json()
+        print(f"Response: {json.dumps(result, indent=2)}")
+        
+        # Validate response structure
+        assert "id" in result, "Response should contain 'id' field"
+        assert "user_session" in result, "Response should contain 'user_session' field"
+        assert "profile_type" in result, "Response should contain 'profile_type' field"
+        assert result["profile_type"] == "quiz", "Profile type should be 'quiz'"
+        
+        # Validate olfactory profile fields
+        assert "olfactory_families" in result, "Response should contain 'olfactory_families' field"
+        assert isinstance(result["olfactory_families"], list), "olfactory_families should be a list"
+        
+        assert "intensity" in result, "Response should contain 'intensity' field"
+        assert result["intensity"] in ["leger", "modere", "intense"], f"Invalid intensity value: {result['intensity']}"
+        
+        assert "sillage" in result, "Response should contain 'sillage' field"
+        assert result["sillage"] in ["intime", "modere", "puissant"], f"Invalid sillage value: {result['sillage']}"
+        
+        assert "emotional_tone" in result, "Response should contain 'emotional_tone' field"
+        assert isinstance(result["emotional_tone"], list), "emotional_tone should be a list"
+        
+        assert "personality_traits" in result, "Response should contain 'personality_traits' field"
+        assert isinstance(result["personality_traits"], list), "personality_traits should be a list"
+        
+        assert "portrait_text" in result, "Response should contain 'portrait_text' field"
+        assert isinstance(result["portrait_text"], str), "portrait_text should be a string"
+        assert len(result["portrait_text"]) > 0, "portrait_text should not be empty"
+        
+        print("✅ Analyze quiz endpoint test with sample data passed")
+        return True
+    except Exception as e:
+        print(f"❌ Analyze quiz endpoint test with sample data failed: {str(e)}")
+        return False
+
 def run_all_tests():
     """Run all tests and return overall result"""
     print(f"Testing backend API at: {API_BASE_URL}")
@@ -559,6 +623,7 @@ def run_all_tests():
         "MongoDB Connection": test_mongodb_connection(),
         "Analyze Perfumes Endpoint": test_analyze_perfumes_endpoint(),
         "Analyze Quiz Endpoint": test_analyze_quiz_endpoint(),
+        "Analyze Quiz with Sample Data": test_analyze_quiz_with_sample_data(),
         "Social Perception Variations": test_social_perception_variations(),
         "Input Validation": test_input_validation_perfumes(),
         "Error Handling": test_error_handling(),
