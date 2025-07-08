@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Badge } from './ui/badge';
@@ -9,6 +9,11 @@ const ResultsPage = ({ profile, onRestart }) => {
   const [showEvaluation, setShowEvaluation] = useState(false);
   const [evaluations, setEvaluations] = useState({});
   const [finalRecommendations, setFinalRecommendations] = useState([]);
+
+  // Scroll vers le haut au montage de la page
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-stone-50 via-amber-50 to-rose-50 py-8 px-4">
