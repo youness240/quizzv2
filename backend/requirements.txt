@@ -29,3 +29,4 @@ httpx
 aiohttp
 openai
 tiktoken
+tokenizers
