@@ -19,7 +19,7 @@ const QuizPage = ({ onComplete }) => {
     if (!selectedOption) return;
 
     const newAnswers = [...answers, {
-      questionId: quizQuestions[currentQuestion].id,
+      questionId: String(quizQuestions[currentQuestion].id),
       value: selectedOption
     }];
     setAnswers(newAnswers);
