@@ -30,7 +30,7 @@ const HomePage = ({ onStartQuiz }) => {
         {/* Bouton CTA */}
         <div>
           <Button 
-            onClick={onStartQuiz}
+            onClick={onStartJourney}
             className="bg-gradient-to-r from-amber-600 to-rose-600 hover:from-amber-700 hover:to-rose-700 text-white px-12 py-6 text-xl font-serif rounded-full shadow-2xl transition-all duration-300 border-2 border-amber-200 hover:border-amber-300"
           >
             Commencer Votre Voyage
