@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from './ui/button';
 
-const HomePage = ({ onStartQuiz }) => {
+const HomePage = ({ onStartJourney }) => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-stone-50 to-rose-50 relative overflow-hidden">
       {/* Main content */}
